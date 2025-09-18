@@ -1,7 +1,7 @@
 // Configuration
 const CONFIG = {
-    GEMINI_API_KEY: process.env.GEMINI_API_KEY || 'AIzaSyCxXAhCxq272p4K0u_hZ_oW1MzJnMWWMaw',
-    GEMINI_API_URL: process.env.GEMINI_API_URL || 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent'
+    GEMINI_API_KEY: 'AIzaSyCxXAhCxq272p4K0u_hZ_oW1MzJnMWWMaw',
+    GEMINI_API_URL: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent'
 };
 
 // System Messages
@@ -316,7 +316,7 @@ async function generateScript() {
 
 // Build prompt for API
 function buildPrompt(topic, additionalInfo) {
-    const systemMessage = SYSTEM_MESSAGES[currentLanguage];
+    const systemMessage = SYSTEM_MESSAGES.all_languages;
     let prompt = systemMessage + '\n\n';
     
     if (currentLanguage === 'ar') {
