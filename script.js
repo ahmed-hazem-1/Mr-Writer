@@ -1,7 +1,7 @@
 // Configuration
 const CONFIG = {
-    GEMINI_API_KEY: '',
-    GEMINI_API_URL: ''
+    GEMINI_API_KEY: 'AIzaSyCxXAhCxq272p4K0u_hZ_oW1MzJnMWWMaw',
+    GEMINI_API_URL: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent'
 };
 
 // System Messages
