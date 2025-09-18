@@ -74,6 +74,9 @@
                 <div class="output-header">
                     <h3 id="outputTitle">الأسكربت الخاص بك</h3>
                     <div class="output-actions">
+                        <button id="viewToggle" class="action-btn" title="تبديل العرض">
+                            <i class="fas fa-eye"></i>
+                        </button>
                         <button id="copyBtn" class="action-btn" title="نسخ النص">
                             <i class="fas fa-copy"></i>
                         </button>
@@ -82,10 +85,50 @@
                         </button>
                     </div>
                 </div>
+                
+                <!-- Script View -->
                 <div class="output-content" id="outputContent">
                     <div class="placeholder">
                         <i class="fas fa-file-alt"></i>
                         <p id="placeholderText">الأسكربت المُولد سيظهر هنا...</p>
+                    </div>
+                </div>
+                
+                <!-- Post Preview -->
+                <div class="post-preview" id="postPreview" style="display: none;">
+                    <div class="post-header">
+                        <div class="post-user">
+                            <div class="user-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="user-info">
+                                <h4 id="postUsername">كاتب المحتوى</h4>
+                                <span id="postTime">الآن</span>
+                            </div>
+                        </div>
+                        <button class="post-menu">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                    </div>
+                    <div class="post-content" id="postContentPreview">
+                        <div class="placeholder">
+                            <i class="fas fa-mobile-alt"></i>
+                            <p id="postPlaceholderText">معاينة المنشور ستظهر هنا...</p>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <button class="post-action">
+                            <i class="fas fa-heart"></i>
+                            <span>إعجاب</span>
+                        </button>
+                        <button class="post-action">
+                            <i class="fas fa-comment"></i>
+                            <span>تعليق</span>
+                        </button>
+                        <button class="post-action">
+                            <i class="fas fa-share"></i>
+                            <span>مشاركة</span>
+                        </button>
                     </div>
                 </div>
             </section>

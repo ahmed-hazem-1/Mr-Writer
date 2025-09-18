@@ -1,76 +1,61 @@
 // Configuration
 const CONFIG = {
-    GEMINI_API_KEY: 'AIzaSyCxXAhCxq272p4K0u_hZ_oW1MzJnMWWMaw',
-    GEMINI_API_URL: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent'
+    GEMINI_API_KEY: '',
+    GEMINI_API_URL: ''
 };
 
 // System Messages
 const SYSTEM_MESSAGES = {
-    arabic: `أنت متخصص في صناعة المحتوى الجذاب والفعال لمنصات التواصل الاجتماعي. مهمتك هي كتابة اسكربتات (نصوص) لمحتوى تعليمي وممتع عن مجال الذكاء الاصطناعي (AI).
+    all_languages: `You are an AI assistant specialized in creating highly engaging and viral social media content scripts. Your primary task is to write content about AI, tailoring the language and tone to the user's request, ensuring every part of the script serves a single purpose: to trigger the platform's algorithm in favor of virality.
 
-**الهدف الرئيسي:** تحويل المواضيع التقنية والمعقدة إلى محتوى بسيط، جذاب، وقابل للانتشار (viral).
+**Main Objective:** Generate a well-structured, viral-optimized script that captures attention and maximizes engagement and reach.
 
-**المنهجية المتبعة:**
-1.  **ابدأ بـ"هوك" جذاب:**
-    * صيغ جملة أو سؤالاً يثير الفضول ويجبر القارئ على التوقف عن التمرير.
-    * استخدم أسئلة شخصية أو حقيقة صادمة أو تشبيهات غير متوقعة.
-    * أضف رموزاً تعبيرية (emojis) مناسبة.
+**The Scripting Blueprint:**
 
-2.  **ابنِ "قصة" بسيطة:**
-    * اشرح الموضوع الأساسي باستخدام تشبيهات من الحياة اليومية.
-    * اجعل المحتوى مرتبطاً بمشاعر القارئ أو مشاكله اليومية.
-    * تجنب المصطلحات التقنية المعقدة قدر الإمكان.
+### 🤯 1. The Hook (Immediate Capture):
+* Start with a single, powerful line that creates instant curiosity or astonishment.
+* Use a shocking question or a surprising fact.
+* **Examples (in different languages):**
+    * Arabic: "🤯 هتصدق لو قولتلك إن..."
+    * English: "🤯 What if I told you..."
+* **Your Goal:** A one-liner that makes the reader say, "Wait, what?!"
 
-3.  **أضف "قيمة صادمة":**
-    * أدخل معلومة غير متوقعة، إحصائية غريبة، أو حقيقة تاريخية مثيرة للاهتمام لزيادة المصداقية وإثارة الدهشة.
+### 📖 2. The Simple Story (Core Analogy):
+* Explain the complex topic using one single, relatable analogy from everyday life.
+* The purpose is to simplify a complex idea quickly and effectively.
+* **Examples (in different languages):**
+    * Arabic: "زي الطفل العبقري اللي..."
+    * English: "It's like a genius child who..."
+* **Your Goal:** One short paragraph with a clear, direct analogy.
 
-4.  **اكتب "خاتمة قوية":**
-    * لخّص الفكرة الرئيسية في جملة قصيرة ومؤثرة.
-    * يجب أن تكون الجملة الأخيرة بمثابة "Punchline" تترك أثراً في ذهن القارئ.
+### ⚡ 3. The Shocking Value (Credibility & Surprise):
+* Introduce one unexpected fact or a mind-blowing statistic to add credibility and create a "wow" moment.
+* **Examples (in different languages):**
+    * Arabic: "⚡ واللي هيصدمك أكتر إن..."
+    * English: "⚡ And here's the shocking part..."
+* **Your Goal:** A single, powerful fact that makes the reader go, "No way!"
 
-5.  **أضف "دعوة للتفاعل" (CTA):**
-    * اطلب من القارئ القيام بإجراء محدد وواضح (مثال: "اكتب في التعليقات...") لزيادة التفاعل (مثل عدد التعليقات، الإعجابات، والمشاركات).
-    * اجعل الـCTA بسيطاً وسهل التنفيذ.
+### 🔥 4. The Power Conclusion (Personal Connection):
+* Deliver a direct, compelling message that makes the reader feel personally connected to the topic.
+* Summarize the core idea in one memorable sentence.
+* **Examples (in different languages):**
+    * Arabic: "🔥 عشان كده لازم تعرف إن..."
+    * English: "🔥 That's why you need to know..."
+* **Your Goal:** A motivational punchline that inspires and convinces the reader.
 
-**القواعد العامة:**
-* كن ودوداً وشخصياً في لهجتك.
-* استخدم لغة قريبة من لغة الحديث اليومي (عامية أو شبه رسمية).
-* نظّم النص باستخدام العناوين الفرعية والرموز التعبيرية لجعل القراءة ممتعة وسهلة.
-* تأكد من أن كل جزء في الاسكربت يخدم هدف جذب القارئ وزيادة التفاعل.
-* اكتب المحتوى باللغة العربية فقط.`,
+### 💬 5. The Call to Action (Specific & Simple):
+* Ask the reader to perform one specific, easy-to-do action to boost engagement and reach.
+* **Examples (in different languages):**
+    * Arabic: "💬 اكتب في الكومنتس: 'مذهل!'"
+    * English: "💬 Comment 'Mindblown!' below."
+* **Your Goal:** A single, clear command that drives interaction.
 
-    english: `You are a specialist in creating engaging and effective content for social media platforms. Your task is to write scripts for educational and entertaining content about Artificial Intelligence (AI).
-
-**Main Objective:** Transform technical and complex topics into simple, engaging, and viral content.
-
-**Methodology:**
-1.  **Start with an engaging "hook":**
-    * Create a sentence or question that sparks curiosity and forces the reader to stop scrolling.
-    * Use personal questions, shocking facts, or unexpected analogies.
-    * Add appropriate emojis.
-
-2.  **Build a simple "story":**
-    * Explain the main topic using analogies from everyday life.
-    * Make the content relatable to the reader's emotions or daily problems.
-    * Avoid complex technical terms as much as possible.
-
-3.  **Add "shocking value":**
-    * Include unexpected information, strange statistics, or interesting historical facts to increase credibility and create surprise.
-
-4.  **Write a "strong conclusion":**
-    * Summarize the main idea in a short and impactful sentence.
-    * The last sentence should be a "punchline" that leaves an impact on the reader's mind.
-
-5.  **Add a "call to action" (CTA):**
-    * Ask the reader to take a specific and clear action (example: "Write in the comments...") to increase engagement (likes, comments, and shares).
-    * Make the CTA simple and easy to execute.
-
-**General Rules:**
-* Be friendly and personal in your tone.
-* Use language close to everyday conversation (casual or semi-formal).
-* Organize the text using subheadings and emojis to make reading enjoyable and easy.
-* Ensure every part of the script serves the goal of attracting readers and increasing engagement.
-* Write the content in English only.`
+**Golden Rules for Scripting:**
+* **Hierarchical Structure:** Each part must build on the previous one, leading the reader seamlessly to the CTA.
+* **Extreme Focus:** Stick to one analogy, one fact, one message.
+* **Tone:** Be friendly, conversational, and energetic.
+* **Final Output:** The script must be ready to be posted directly, without any extra explanations or formatting.
+* **Language:** Write the script in the requested language (e.g., Egyptian Arabic, English) with the appropriate cultural nuances and emojis.`
 };
 
 // Translations
@@ -95,10 +80,17 @@ const TRANSLATIONS = {
         feature4Desc: 'يكتب باللغتين العربية والإنجليزية بطلاقة',
         footerText: '© 2025 كاتب الأسكربت المتخصص | مدعوم بالذكاء الاصطناعي',
         toastCopied: 'تم نسخ النص بنجاح!',
-        toastError: 'حدث خطأ، حاول مرة أخرى',
+        toastError: 'حدث خطأ، جاري المحاولة مرة أخرى...',
         errorTitle: 'خطأ في التوليد',
-        errorMessage: 'حدث خطأ أثناء توليد الأسكربت. تأكد من اتصالك بالإنترنت وحاول مرة أخرى.',
-        emptyTopicError: 'يرجى إدخال موضوع أو فكرة أولاً'
+        errorMessage: 'حدث خطأ أثناء توليد الأسكربت. يرجى المحاولة مرة أخرى.',
+        emptyTopicError: 'يرجى إدخال موضوع أو فكرة أولاً',
+        retryingMessage: 'جاري إعادة المحاولة...',
+        serviceUnavailable: 'الخدمة غير متاحة مؤقتاً، جاري المحاولة مرة أخرى...',
+        postPlaceholderText: 'معاينة المنشور ستظهر هنا...',
+        postUsername: 'كاتب المحتوى',
+        postTime: 'الآن',
+        viewScript: 'عرض الأسكربت',
+        previewPost: 'معاينة المنشور'
     },
     en: {
         topicLabel: 'Write your topic or idea here',
@@ -120,16 +112,24 @@ const TRANSLATIONS = {
         feature4Desc: 'Writes fluently in both Arabic and English',
         footerText: '© 2025 AI Script Writer | Powered by Artificial Intelligence',
         toastCopied: 'Text copied successfully!',
-        toastError: 'An error occurred, please try again',
+        toastError: 'An error occurred, retrying...',
         errorTitle: 'Generation Error',
-        errorMessage: 'An error occurred while generating the script. Please check your internet connection and try again.',
-        emptyTopicError: 'Please enter a topic or idea first'
+        errorMessage: 'An error occurred while generating the script. Please try again.',
+        emptyTopicError: 'Please enter a topic or idea first',
+        retryingMessage: 'Retrying...',
+        serviceUnavailable: 'Service temporarily unavailable, retrying...',
+        postPlaceholderText: 'Post preview will appear here...',
+        postUsername: 'Content Creator',
+        postTime: 'now',
+        viewScript: 'Show Script',
+        previewPost: 'Preview Post'
     }
 };
 
 // Global state
 let currentLanguage = 'ar';
 let isGenerating = false;
+let isPostView = false;
 
 // DOM Elements
 const elements = {
@@ -140,6 +140,9 @@ const elements = {
     generateBtn: document.getElementById('generateBtn'),
     outputSection: document.getElementById('outputSection'),
     outputContent: document.getElementById('outputContent'),
+    postPreview: document.getElementById('postPreview'),
+    postContentPreview: document.getElementById('postContentPreview'),
+    viewToggle: document.getElementById('viewToggle'),
     copyBtn: document.getElementById('copyBtn'),
     downloadBtn: document.getElementById('downloadBtn'),
     toast: document.getElementById('toast'),
@@ -158,6 +161,7 @@ function setupEventListeners() {
     elements.arabicBtn.addEventListener('click', () => switchLanguage('ar'));
     elements.englishBtn.addEventListener('click', () => switchLanguage('en'));
     elements.generateBtn.addEventListener('click', generateScript);
+    elements.viewToggle.addEventListener('click', toggleView);
     elements.copyBtn.addEventListener('click', copyToClipboard);
     elements.downloadBtn.addEventListener('click', downloadScript);
     
@@ -209,13 +213,68 @@ function updateLanguage(lang) {
     document.getElementById('feature4Title').textContent = t.feature4Title;
     document.getElementById('feature4Desc').textContent = t.feature4Desc;
     document.getElementById('footerText').textContent = t.footerText;
+    
+    // Update post preview elements
+    document.getElementById('postPlaceholderText').textContent = t.postPlaceholderText;
+    document.getElementById('postUsername').textContent = t.postUsername;
+    document.getElementById('postTime').textContent = t.postTime;
+    
+    // Update view toggle tooltip
+    elements.viewToggle.title = isPostView ? t.viewScript : t.previewPost;
+}
+
+// Toggle between script and post view
+function toggleView() {
+    isPostView = !isPostView;
+    
+    if (isPostView) {
+        elements.outputContent.style.display = 'none';
+        elements.postPreview.style.display = 'block';
+        elements.viewToggle.classList.add('active');
+        elements.viewToggle.title = currentLanguage === 'ar' ? 'عرض الأسكربت' : 'Show Script';
+        elements.viewToggle.innerHTML = '<i class="fas fa-code"></i>';
+    } else {
+        elements.outputContent.style.display = 'block';
+        elements.postPreview.style.display = 'none';
+        elements.viewToggle.classList.remove('active');
+        elements.viewToggle.title = currentLanguage === 'ar' ? 'معاينة المنشور' : 'Preview Post';
+        elements.viewToggle.innerHTML = '<i class="fas fa-eye"></i>';
+    }
+}
+
+// Clean script text for post preview
+function cleanScriptForPost(scriptText) {
+    return scriptText
+        .replace(/\*\*/g, '') // Remove markdown bold
+        .replace(/###.*?\n/g, '') // Remove section headers
+        .replace(/\n{3,}/g, '\n\n') // Reduce multiple line breaks
+        .trim();
 }
 
 // UI Updates
 function updateUI() {
     const hasContent = elements.outputContent.querySelector('.output-text') !== null;
+    elements.viewToggle.style.display = hasContent ? 'flex' : 'none';
     elements.copyBtn.style.display = hasContent ? 'flex' : 'none';
     elements.downloadBtn.style.display = hasContent ? 'flex' : 'none';
+    
+    // Update post preview if content exists
+    if (hasContent) {
+        updatePostPreview();
+    }
+}
+
+// Update post preview content
+function updatePostPreview() {
+    const outputText = elements.outputContent.querySelector('.output-text');
+    if (!outputText) return;
+    
+    const scriptText = outputText.innerText;
+    const cleanedText = cleanScriptForPost(scriptText);
+    
+    elements.postContentPreview.innerHTML = `
+        <div class="post-content-text">${cleanedText}</div>
+    `;
 }
 
 // Generate Script
@@ -241,8 +300,15 @@ async function generateScript() {
         
     } catch (error) {
         console.error('Error generating script:', error);
-        displayError();
-        showToast(TRANSLATIONS[currentLanguage].toastError, 'error');
+        
+        // Show specific error message
+        let errorMessage = TRANSLATIONS[currentLanguage].toastError;
+        if (error.message.includes('503') || error.message.includes('غير متاحة')) {
+            errorMessage = TRANSLATIONS[currentLanguage].serviceUnavailable;
+        }
+        
+        displayError(error.message);
+        showToast(errorMessage, 'error');
     } finally {
         setGeneratingState(false);
     }
@@ -270,8 +336,8 @@ function buildPrompt(topic, additionalInfo) {
     return prompt;
 }
 
-// Call Gemini API
-async function callGeminiAPI(prompt) {
+// Call Gemini API with retry mechanism
+async function callGeminiAPI(prompt, maxRetries = 3) {
     const requestBody = {
         contents: [{
             parts: [{
@@ -286,25 +352,59 @@ async function callGeminiAPI(prompt) {
         }
     };
     
-    const response = await fetch(`${CONFIG.GEMINI_API_URL}?key=${CONFIG.GEMINI_API_KEY}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody)
-    });
-    
-    if (!response.ok) {
-        throw new Error(`API request failed: ${response.status}`);
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+            const response = await fetch(`${CONFIG.GEMINI_API_URL}?key=${CONFIG.GEMINI_API_KEY}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestBody)
+            });
+            
+            if (response.status === 503 || response.status === 429) {
+                // Service Unavailable or Too Many Requests - wait and retry
+                if (attempt < maxRetries) {
+                    const waitTime = Math.pow(2, attempt) * 1000; // Exponential backoff
+                    await new Promise(resolve => setTimeout(resolve, waitTime));
+                    continue;
+                }
+            }
+            
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`API request failed: ${response.status} - ${errorText}`);
+            }
+            
+            const data = await response.json();
+            
+            if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
+                throw new Error('Invalid API response structure');
+            }
+            
+            return data.candidates[0].content.parts[0].text;
+            
+        } catch (error) {
+            if (attempt === maxRetries) {
+                // Last attempt failed
+                if (error.message.includes('503')) {
+                    throw new Error('خدمة الذكاء الاصطناعي غير متاحة حالياً. حاول مرة أخرى بعد قليل.');
+                } else if (error.message.includes('429')) {
+                    throw new Error('تم تجاوز حد الطلبات. انتظر دقيقة واحدة وحاول مرة أخرى.');
+                } else if (error.message.includes('403')) {
+                    throw new Error('مشكلة في مفتاح الـ API. تحقق من الإعدادات.');
+                } else {
+                    throw new Error('حدث خطأ في الاتصال. تحقق من اتصالك بالإنترنت وحاول مرة أخرى.');
+                }
+            }
+            
+            // Wait before retry for network errors
+            if (attempt < maxRetries) {
+                const waitTime = 2000 * attempt; // 2s, 4s, 6s...
+                await new Promise(resolve => setTimeout(resolve, waitTime));
+            }
+        }
     }
-    
-    const data = await response.json();
-    
-    if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
-        throw new Error('Invalid API response structure');
-    }
-    
-    return data.candidates[0].content.parts[0].text;
 }
 
 // Display generated script
@@ -333,13 +433,18 @@ function formatScript(text) {
 }
 
 // Display error
-function displayError() {
+function displayError(customMessage = null) {
     const t = TRANSLATIONS[currentLanguage];
+    const message = customMessage || t.errorMessage;
+    
     elements.outputContent.innerHTML = `
         <div class="error-message fade-in">
             <i class="fas fa-exclamation-triangle" style="color: #ef4444; font-size: 2rem; margin-bottom: 1rem;"></i>
             <h3 style="color: #ef4444; margin-bottom: 0.5rem;">${t.errorTitle}</h3>
-            <p style="color: #64748b;">${t.errorMessage}</p>
+            <p style="color: #64748b; line-height: 1.6;">${message}</p>
+            <button onclick="generateScript()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #6366f1; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">
+                <i class="fas fa-redo"></i> حاول مرة أخرى
+            </button>
         </div>
     `;
 }
