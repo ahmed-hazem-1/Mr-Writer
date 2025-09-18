@@ -1,0 +1,29 @@
+{
+  "name": "ai-script-writer",
+  "version": "1.0.0",
+  "description": "A specialized AI chatbot for creating engaging social media scripts in Arabic and English",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site - no build needed'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "ai",
+    "script-writer",
+    "social-media",
+    "content-creation",
+    "arabic",
+    "english",
+    "gemini-api",
+    "vercel"
+  ],
+  "author": "Mr Ezzat",
+  "license": "MIT",
+  "devDependencies": {
+    "vercel": "^32.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

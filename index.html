@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كاتب الأسكربت المتخصص | AI Script Writer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-pen-fancy"></i>
+                <h1>كاتب الأسكربت المتخصص</h1>
+            </div>
+            <p class="subtitle">حوّل أفكارك إلى محتوى جذاب ومؤثر للمنصات الاجتماعية</p>
+        </header>
+
+        <!-- Language Toggle -->
+        <div class="language-toggle">
+            <button id="arabicBtn" class="lang-btn active" data-lang="ar">
+                <i class="fas fa-globe"></i>
+                عربي
+            </button>
+            <button id="englishBtn" class="lang-btn" data-lang="en">
+                <i class="fas fa-globe"></i>
+                English
+            </button>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="form-group">
+                    <label for="topicInput" class="label">
+                        <i class="fas fa-lightbulb"></i>
+                        <span id="topicLabel">اكتب موضوعك أو فكرتك هنا</span>
+                    </label>
+                    <textarea 
+                        id="topicInput" 
+                        placeholder="مثال: كيف يمكن للذكاء الاصطناعي أن يساعد في التعليم؟"
+                        rows="4"
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="additionalInfo" class="label">
+                        <i class="fas fa-info-circle"></i>
+                        <span id="additionalLabel">معلومات إضافية (اختياري)</span>
+                    </label>
+                    <textarea 
+                        id="additionalInfo" 
+                        placeholder="أضف أي تفاصيل إضافية، جمهور مستهدف، أو نبرة معينة تريدها"
+                        rows="3"
+                    ></textarea>
+                </div>
+
+                <button id="generateBtn" class="generate-btn">
+                    <i class="fas fa-magic"></i>
+                    <span id="generateText">اكتب الأسكربت</span>
+                    <div class="loading-spinner" id="loadingSpinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                </button>
+            </section>
+
+            <!-- Output Section -->
+            <section class="output-section" id="outputSection">
+                <div class="output-header">
+                    <h3 id="outputTitle">الأسكربت الخاص بك</h3>
+                    <div class="output-actions">
+                        <button id="copyBtn" class="action-btn" title="نسخ النص">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                        <button id="downloadBtn" class="action-btn" title="تحميل كملف">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="output-content" id="outputContent">
+                    <div class="placeholder">
+                        <i class="fas fa-file-alt"></i>
+                        <p id="placeholderText">الأسكربت المُولد سيظهر هنا...</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Features Section -->
+        <section class="features">
+            <h2 id="featuresTitle">مميزات كاتب الأسكربت</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3 id="feature1Title">خطافات جذابة</h3>
+                    <p id="feature1Desc">يبدأ بجمل تجذب الانتباه وتوقف المتصفح عن التمرير</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-heart"></i>
+                    <h3 id="feature2Title">محتوى مؤثر</h3>
+                    <p id="feature2Desc">يحول المواضيع التقنية إلى قصص بسيطة ومؤثرة</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-share-alt"></i>
+                    <h3 id="feature3Title">قابل للانتشار</h3>
+                    <p id="feature3Desc">مصمم لزيادة التفاعل والمشاركات على المنصات الاجتماعية</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-language"></i>
+                    <h3 id="feature4Title">دعم متعدد اللغات</h3>
+                    <p id="feature4Desc">يكتب باللغتين العربية والإنجليزية بطلاقة</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p id="footerText">&copy; 2025 كاتب الأسكربت المتخصص | مدعوم بالذكاء الاصطناعي</p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i class="fas fa-check"></i>
+        <span id="toastMessage">تم نسخ النص بنجاح!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
