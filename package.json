@@ -5,7 +5,6 @@
   "main": "index.html",
   "scripts": {
     "dev": "vercel dev",
-    "build": "echo 'Static site - no build needed'",
     "deploy": "vercel --prod"
   },
   "keywords": [
@@ -24,6 +23,6 @@
     "vercel": "^32.0.0"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": "18.x"
   }
 }
