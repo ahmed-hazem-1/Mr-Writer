@@ -50,6 +50,23 @@
 
                 <!-- Dropdowns Section -->
                 <div class="dropdowns-section">
+                    <!-- AI Model Selection -->
+                    <div class="form-group dropdown-group">
+                        <label for="modelSelect" class="label">
+                            <i class="fas fa-brain"></i>
+                            <span id="modelLabel">نموذج الذكاء الاصطناعي</span>
+                        </label>
+                        <select id="modelSelect" class="dropdown-select">
+                            <option value="gemini-1.5-flash" id="modelGeminiFlash">Gemini 1.5 Flash (سريع)</option>
+                            <option value="gemini-1.5-pro" id="modelGeminiPro">Gemini 1.5 Pro (متقدم)</option>
+                            <option value="gemini-1.0-pro" id="modelGemini1Pro">Gemini 1.0 Pro (مستقر)</option>
+                            <option value="gemini-exp-1206" id="modelGeminiExp">Gemini Experimental (تجريبي)</option>
+                        </select>
+                        <div class="model-info" id="modelInfo">
+                            <small id="modelDescription">نموذج سريع ومناسب للاستخدام العام</small>
+                        </div>
+                    </div>
+
                     <!-- Examples Dropdown -->
                     <div class="form-group dropdown-group">
                         <label for="examplesSelect" class="label">

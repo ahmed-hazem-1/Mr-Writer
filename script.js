@@ -1,7 +1,59 @@
 // Configuration
 const CONFIG = {
+    // Primary Gemini API Key
     GEMINI_API_KEY: 'AIzaSyCxXAhCxq272p4K0u_hZ_oW1MzJnMWWMaw',
-    GEMINI_API_URL: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent'
+    
+    // Google Gemini Models Configuration
+    MODELS: {
+        'gemini-1.5-flash': {
+            provider: 'gemini',
+            endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent',
+            apiKey: 'AIzaSyCxXAhCxq272p4K0u_hZ_oW1MzJnMWWMaw',
+            name: 'Gemini 1.5 Flash',
+            description: {
+                ar: 'نموذج سريع ومناسب للاستخدام العام، استجابة فورية وسعر منخفض',
+                en: 'Fast model suitable for general use, instant response and low cost'
+            },
+            maxTokens: 8192,
+            temperature: 0.7
+        },
+        'gemini-1.5-pro': {
+            provider: 'gemini',
+            endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent',
+            apiKey: 'AIzaSyCxXAhCxq272p4K0u_hZ_oW1MzJnMWWMaw',
+            name: 'Gemini 1.5 Pro',
+            description: {
+                ar: 'نموذج متقدم للمهام المعقدة، جودة عالية وإبداع أكبر ومعالجة أطول',
+                en: 'Advanced model for complex tasks, high quality, more creativity and longer processing'
+            },
+            maxTokens: 8192,
+            temperature: 0.8
+        },
+        'gemini-1.0-pro': {
+            provider: 'gemini',
+            endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.0-pro-latest:generateContent',
+            apiKey: 'AIzaSyCxXAhCxq272p4K0u_hZ_oW1MzJnMWWMaw',
+            name: 'Gemini 1.0 Pro',
+            description: {
+                ar: 'نموذج مستقر وموثوق، مناسب للاستخدام المهني وأقل استهلاكاً',
+                en: 'Stable and reliable model, suitable for professional use and lower consumption'
+            },
+            maxTokens: 2048,
+            temperature: 0.7
+        },
+        'gemini-exp-1206': {
+            provider: 'gemini',
+            endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-exp-1206:generateContent',
+            apiKey: 'AIzaSyCxXAhCxq272p4K0u_hZ_oW1MzJnMWWMaw',
+            name: 'Gemini Experimental',
+            description: {
+                ar: 'نموذج تجريبي بقدرات محسنة، قد يكون غير مستقر أحياناً',
+                en: 'Experimental model with enhanced capabilities, may be unstable sometimes'
+            },
+            maxTokens: 8192,
+            temperature: 0.8
+        }
+    }
 };
 
 // System Messages
@@ -110,6 +162,12 @@ const TRANSLATIONS = {
         hashtagsTitle: 'الهاشتاجز المناسبة',
         visualSuggestionsTitle: 'اقتراحات المحتوى المرئي',
         engagementStrategiesTitle: 'استراتيجيات التفاعل',
+        // Model dropdown translations
+        modelLabel: 'نموذج الذكاء الاصطناعي',
+        modelGeminiFlash: 'Gemini 1.5 Flash (سريع)',
+        modelGeminiPro: 'Gemini 1.5 Pro (متقدم)',
+        modelGemini1Pro: 'Gemini 1.0 Pro (مستقر)',
+        modelGeminiExp: 'Gemini Experimental (تجريبي)',
         // Dropdown translations
         examplesLabel: 'أمثلة جاهزة',
         themeLabel: 'نمط الكتابة',
@@ -180,6 +238,12 @@ const TRANSLATIONS = {
         hashtagsTitle: 'Relevant Hashtags',
         visualSuggestionsTitle: 'Visual Content Suggestions',
         engagementStrategiesTitle: 'Engagement Strategies',
+        // Model dropdown translations
+        modelLabel: 'AI Model',
+        modelGeminiFlash: 'Gemini 1.5 Flash (Fast)',
+        modelGeminiPro: 'Gemini 1.5 Pro (Advanced)',
+        modelGemini1Pro: 'Gemini 1.0 Pro (Stable)',
+        modelGeminiExp: 'Gemini Experimental (Beta)',
         // Dropdown translations
         examplesLabel: 'Ready Examples',
         themeLabel: 'Writing Style',
@@ -225,6 +289,8 @@ const elements = {
     englishBtn: document.getElementById('englishBtn'),
     topicInput: document.getElementById('topicInput'),
     additionalInfo: document.getElementById('additionalInfo'),
+    modelSelect: document.getElementById('modelSelect'),
+    modelInfo: document.getElementById('modelInfo'),
     examplesSelect: document.getElementById('examplesSelect'),
     themeSelect: document.getElementById('themeSelect'),
     audienceSelect: document.getElementById('audienceSelect'),
@@ -262,6 +328,7 @@ function setupEventListeners() {
     elements.downloadBtn.addEventListener('click', downloadScript);
     
     // Dropdown event listeners
+    elements.modelSelect.addEventListener('change', handleModelChange);
     elements.examplesSelect.addEventListener('change', handleExampleChange);
     elements.themeSelect.addEventListener('change', handleThemeChange);
     elements.audienceSelect.addEventListener('change', handleAudienceChange);
@@ -272,6 +339,30 @@ function setupEventListeners() {
             generateScript();
         }
     });
+}
+
+// Handle model selection
+function handleModelChange() {
+    updateModelDescription();
+}
+
+// Update model description
+function updateModelDescription() {
+    const selectedModel = elements.modelSelect.value;
+    const modelConfig = CONFIG.MODELS[selectedModel];
+    
+    if (modelConfig && modelConfig.description) {
+        const description = modelConfig.description[currentLanguage];
+        document.getElementById('modelDescription').textContent = description;
+        
+        // Check if API key is missing for external providers
+        if (modelConfig.provider !== 'gemini' && !modelConfig.apiKey) {
+            const warningText = currentLanguage === 'ar' ? 
+                '⚠️ يتطلب مفتاح API منفصل' : 
+                '⚠️ Requires separate API key';
+            document.getElementById('modelDescription').textContent = description + ' - ' + warningText;
+        }
+    }
 }
 
 // Handle example selection
@@ -377,9 +468,19 @@ function updateLanguage(lang) {
     document.getElementById('footerText').textContent = t.footerText;
     
     // Update dropdown labels and options
+    document.getElementById('modelLabel').textContent = t.modelLabel;
     document.getElementById('examplesLabel').textContent = t.examplesLabel;
     document.getElementById('themeLabel').textContent = t.themeLabel;
     document.getElementById('audienceLabel').textContent = t.audienceLabel;
+    
+    // Update model options
+    document.getElementById('modelGeminiFlash').textContent = t.modelGeminiFlash;
+    document.getElementById('modelGeminiPro').textContent = t.modelGeminiPro;
+    document.getElementById('modelGemini1Pro').textContent = t.modelGemini1Pro;
+    document.getElementById('modelGeminiExp').textContent = t.modelGeminiExp;
+    
+    // Update model description
+    updateModelDescription();
     
     // Update dropdown options
     document.getElementById('examplesDefaultOption').textContent = t.examplesDefaultOption;
@@ -798,7 +899,7 @@ async function generateScript() {
         const additionalInfo = elements.additionalInfo.value.trim();
         const prompt = buildPrompt(topic, additionalInfo);
         
-        const response = await callGeminiAPI(prompt);
+        const response = await callAIAPI(prompt);
         displayScript(response);
         showToast(TRANSLATIONS[currentLanguage].toastCopied.replace('نسخ النص', 'توليد الأسكربت'), 'success');
         
@@ -902,8 +1003,20 @@ function getAudienceDescription(audience) {
     return audienceDescriptions[audience] || '';
 }
 
-// Call Gemini API with retry mechanism
-async function callGeminiAPI(prompt, maxRetries = 3) {
+// Call AI API with retry mechanism (Google Gemini only)
+async function callAIAPI(prompt, maxRetries = 3) {
+    const selectedModel = elements.modelSelect.value;
+    const modelConfig = CONFIG.MODELS[selectedModel];
+    
+    if (!modelConfig) {
+        throw new Error('نموذج الذكاء الاصطناعي غير صحيح');
+    }
+    
+    return await callGeminiAPI(prompt, modelConfig, maxRetries);
+}
+
+// Call Gemini API
+async function callGeminiAPI(prompt, modelConfig, maxRetries = 3) {
     const requestBody = {
         contents: [{
             parts: [{
@@ -911,16 +1024,16 @@ async function callGeminiAPI(prompt, maxRetries = 3) {
             }]
         }],
         generationConfig: {
-            temperature: 0.7,
+            temperature: modelConfig.temperature,
             topK: 40,
             topP: 0.95,
-            maxOutputTokens: 2048,
+            maxOutputTokens: modelConfig.maxTokens,
         }
     };
     
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
         try {
-            const response = await fetch(`${CONFIG.GEMINI_API_URL}?key=${CONFIG.GEMINI_API_KEY}`, {
+            const response = await fetch(`${modelConfig.endpoint}?key=${modelConfig.apiKey}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -929,9 +1042,8 @@ async function callGeminiAPI(prompt, maxRetries = 3) {
             });
             
             if (response.status === 503 || response.status === 429) {
-                // Service Unavailable or Too Many Requests - wait and retry
                 if (attempt < maxRetries) {
-                    const waitTime = Math.pow(2, attempt) * 1000; // Exponential backoff
+                    const waitTime = Math.pow(2, attempt) * 1000;
                     await new Promise(resolve => setTimeout(resolve, waitTime));
                     continue;
                 }
@@ -939,38 +1051,59 @@ async function callGeminiAPI(prompt, maxRetries = 3) {
             
             if (!response.ok) {
                 const errorText = await response.text();
-                throw new Error(`API request failed: ${response.status} - ${errorText}`);
+                
+                // Specific error handling for different Gemini models
+                if (response.status === 429) {
+                    const currentModel = modelConfig.name;
+                    const suggestedModel = getSuggestedAlternativeModel(selectedModel);
+                    const suggestionText = currentLanguage === 'ar' ? 
+                        `تم تجاوز حد الطلبات في ${currentModel}. جرب نموذج ${suggestedModel} بدلاً منه.` :
+                        `Rate limit exceeded for ${currentModel}. Try ${suggestedModel} instead.`;
+                    throw new Error(suggestionText);
+                }
+                
+                throw new Error(`Gemini API request failed: ${response.status} - ${errorText}`);
             }
             
             const data = await response.json();
             
             if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
-                throw new Error('Invalid API response structure');
+                throw new Error('Invalid Gemini API response structure');
             }
             
             return data.candidates[0].content.parts[0].text;
             
         } catch (error) {
             if (attempt === maxRetries) {
-                // Last attempt failed
                 if (error.message.includes('503')) {
-                    throw new Error('خدمة الذكاء الاصطناعي غير متاحة حالياً. حاول مرة أخرى بعد قليل.');
+                    throw new Error(`خدمة ${modelConfig.name} غير متاحة حالياً. جرب نموذج آخر.`);
                 } else if (error.message.includes('429')) {
-                    throw new Error('تم تجاوز حد الطلبات. انتظر دقيقة واحدة وحاول مرة أخرى.');
+                    throw new Error(error.message); // Use the specific suggestion message
                 } else if (error.message.includes('403')) {
                     throw new Error('مشكلة في مفتاح الـ API. تحقق من الإعدادات.');
                 } else {
-                    throw new Error('حدث خطأ في الاتصال. تحقق من اتصالك بالإنترنت وحاول مرة أخرى.');
+                    throw new Error(`خطأ في ${modelConfig.name}: ${error.message}`);
                 }
             }
             
-            // Wait before retry for network errors
             if (attempt < maxRetries) {
-                const waitTime = 2000 * attempt; // 2s, 4s, 6s...
+                const waitTime = 2000 * attempt;
                 await new Promise(resolve => setTimeout(resolve, waitTime));
             }
         }
     }
+}
+
+// Get suggested alternative model when current model fails
+function getSuggestedAlternativeModel(currentModel) {
+    const alternatives = {
+        'gemini-1.5-flash': 'Gemini 1.5 Pro',
+        'gemini-1.5-pro': 'Gemini 1.0 Pro',
+        'gemini-1.0-pro': 'Gemini Experimental',
+        'gemini-exp-1206': 'Gemini 1.5 Flash'
+    };
+    
+    return alternatives[currentModel] || 'نموذج آخر';
 }
 
 // Display generated script

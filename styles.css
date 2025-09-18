@@ -315,6 +315,27 @@ textarea::placeholder {
     font-size: 0.9rem;
 }
 
+/* Model Info Styling */
+.model-info {
+    margin-top: var(--spacing-xs);
+    padding: var(--spacing-xs);
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--primary-color);
+}
+
+[dir="rtl"] .model-info {
+    border-left: none;
+    border-right: 3px solid var(--primary-color);
+}
+
+.model-info small {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    display: block;
+}
+
 /* Generate Button */
 .generate-btn {
     width: 100%;
