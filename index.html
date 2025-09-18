@@ -48,6 +48,78 @@
                     ></textarea>
                 </div>
 
+                <!-- Dropdowns Section -->
+                <div class="dropdowns-section">
+                    <!-- Examples Dropdown -->
+                    <div class="form-group dropdown-group">
+                        <label for="examplesSelect" class="label">
+                            <i class="fas fa-list"></i>
+                            <span id="examplesLabel">أمثلة جاهزة</span>
+                        </label>
+                        <select id="examplesSelect" class="dropdown-select">
+                            <option value="" id="examplesDefaultOption">اختر مثال أو اكتب موضوعك الخاص</option>
+                            <option value="ai-education" id="exampleAiEducation">الذكاء الاصطناعي في التعليم</option>
+                            <option value="social-media-marketing" id="exampleSocialMedia">التسويق عبر وسائل التواصل</option>
+                            <option value="remote-work" id="exampleRemoteWork">العمل عن بُعد</option>
+                            <option value="cryptocurrency" id="exampleCrypto">العملات الرقمية</option>
+                            <option value="health-fitness" id="exampleHealth">الصحة واللياقة</option>
+                            <option value="entrepreneurship" id="exampleBusiness">ريادة الأعمال</option>
+                            <option value="climate-change" id="exampleClimate">التغير المناخي</option>
+                            <option value="mental-health" id="exampleMental">الصحة النفسية</option>
+                        </select>
+                    </div>
+
+                    <!-- Theme/Style Dropdown -->
+                    <div class="form-group dropdown-group">
+                        <label for="themeSelect" class="label">
+                            <i class="fas fa-palette"></i>
+                            <span id="themeLabel">نمط الكتابة</span>
+                        </label>
+                        <select id="themeSelect" class="dropdown-select">
+                            <option value="engaging" id="themeEngaging">جذاب ومثير</option>
+                            <option value="educational" id="themeEducational">تعليمي ومفيد</option>
+                            <option value="humorous" id="themeHumorous">فكاهي وخفيف</option>
+                            <option value="serious" id="themeSerious">جدي ومهني</option>
+                            <option value="inspirational" id="themeInspirational">ملهم ومحفز</option>
+                            <option value="storytelling" id="themeStorytelling">قصصي وشخصي</option>
+                            <option value="custom" id="themeCustom">مخصص</option>
+                        </select>
+                        <input 
+                            type="text" 
+                            id="customTheme" 
+                            class="custom-input" 
+                            placeholder="اكتب النمط المخصص هنا..."
+                            style="display: none;"
+                        />
+                    </div>
+
+                    <!-- Target Audience Dropdown -->
+                    <div class="form-group dropdown-group">
+                        <label for="audienceSelect" class="label">
+                            <i class="fas fa-users"></i>
+                            <span id="audienceLabel">الجمهور المستهدف</span>
+                        </label>
+                        <select id="audienceSelect" class="dropdown-select">
+                            <option value="general" id="audienceGeneral">الجمهور العام</option>
+                            <option value="young-adults" id="audienceYoung">الشباب (18-30)</option>
+                            <option value="professionals" id="audienceProfessionals">المحترفون</option>
+                            <option value="students" id="audienceStudents">الطلاب</option>
+                            <option value="entrepreneurs" id="audienceEntrepreneurs">رواد الأعمال</option>
+                            <option value="parents" id="audienceParents">الآباء والأمهات</option>
+                            <option value="tech-enthusiasts" id="audienceTech">عشاق التكنولوجيا</option>
+                            <option value="arabic-speakers" id="audienceArabic">الناطقون بالعربية</option>
+                            <option value="custom" id="audienceCustom">مخصص</option>
+                        </select>
+                        <input 
+                            type="text" 
+                            id="customAudience" 
+                            class="custom-input" 
+                            placeholder="اكتب الجمهور المخصص هنا..."
+                            style="display: none;"
+                        />
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="additionalInfo" class="label">
                         <i class="fas fa-info-circle"></i>
@@ -129,6 +201,67 @@
                             <i class="fas fa-share"></i>
                             <span>مشاركة</span>
                         </button>
+                    </div>
+                </div>
+                
+                <!-- Guided Tips View -->
+                <div class="guided-tips" id="guidedTips" style="display: none;">
+                    <div class="tips-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3 id="guidedTipsTitle">دليل إنشاء المحتوى الفيروسي</h3>
+                    </div>
+                    
+                    <div class="tips-content" id="guidedTipsContent">
+                        <div class="placeholder">
+                            <i class="fas fa-rocket"></i>
+                            <p id="guidedPlaceholderText">نصائح المحتوى الفيروسي ستظهر هنا...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tips-sections" id="tipsSections" style="display: none;">
+                        <!-- Image Prompts -->
+                        <div class="tip-section">
+                            <h4 id="imagePromptsTitle">
+                                <i class="fas fa-image"></i>
+                                مطالبات الصور المطلوبة
+                            </h4>
+                            <div class="tips-list" id="imagePromptsList">
+                                <!-- Generated image prompts will go here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Hashtags -->
+                        <div class="tip-section">
+                            <h4 id="hashtagsTitle">
+                                <i class="fas fa-hashtag"></i>
+                                الهاشتاجز المناسبة
+                            </h4>
+                            <div class="hashtags-container" id="hashtagsList">
+                                <!-- Generated hashtags will go here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Visual Suggestions -->
+                        <div class="tip-section">
+                            <h4 id="visualSuggestionsTitle">
+                                <i class="fas fa-palette"></i>
+                                اقتراحات المحتوى المرئي
+                            </h4>
+                            <div class="tips-list" id="visualSuggestionsList">
+                                <!-- Generated visual suggestions will go here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Engagement Strategies -->
+                        <div class="tip-section">
+                            <h4 id="engagementStrategiesTitle">
+                                <i class="fas fa-rocket"></i>
+                                استراتيجيات التفاعل
+                            </h4>
+                            <div class="tips-list" id="engagementStrategiesList">
+                                <!-- Generated engagement strategies will go here -->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
