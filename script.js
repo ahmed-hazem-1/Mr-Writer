@@ -1,14 +1,30 @@
 // Configuration
 const CONFIG = {
-    // Primary Gemini API Key
-    GEMINI_API_KEY: 'AIzaSyCxXAhCxq272p4K0u_hZ_oW1MzJnMWWMaw',
+    // Multiple Gemini API Keys
+    API_KEYS: {
+        'key1': {
+            name: 'Primary Key',
+            key: 'AIzaSyCxXAhCxq272p4K0u_hZ_oW1MzJnMWWMaw',
+            description: {
+                ar: 'المفتاح الأساسي',
+                en: 'Primary Key'
+            }
+        },
+        'key2': {
+            name: 'Secondary Key',
+            key: 'AIzaSyBflO2FleHPBNwlvXncR5U4UPelBSA_HIw',
+            description: {
+                ar: 'المفتاح الثانوي',
+                en: 'Secondary Key'
+            }
+        }
+    },
     
     // Google Gemini Models Configuration
     MODELS: {
         'gemini-1.5-flash': {
             provider: 'gemini',
             endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent',
-            apiKey: 'AIzaSyCxXAhCxq272p4K0u_hZ_oW1MzJnMWWMaw',
             name: 'Gemini 1.5 Flash',
             description: {
                 ar: 'نموذج سريع ومناسب للاستخدام العام، استجابة فورية وسعر منخفض',
@@ -20,7 +36,6 @@ const CONFIG = {
         'gemini-1.5-pro': {
             provider: 'gemini',
             endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent',
-            apiKey: 'AIzaSyCxXAhCxq272p4K0u_hZ_oW1MzJnMWWMaw',
             name: 'Gemini 1.5 Pro',
             description: {
                 ar: 'نموذج متقدم للمهام المعقدة، جودة عالية وإبداع أكبر ومعالجة أطول',
@@ -32,7 +47,6 @@ const CONFIG = {
         'gemini-1.0-pro': {
             provider: 'gemini',
             endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.0-pro-latest:generateContent',
-            apiKey: 'AIzaSyCxXAhCxq272p4K0u_hZ_oW1MzJnMWWMaw',
             name: 'Gemini 1.0 Pro',
             description: {
                 ar: 'نموذج مستقر وموثوق، مناسب للاستخدام المهني وأقل استهلاكاً',
@@ -44,14 +58,13 @@ const CONFIG = {
         'gemini-exp-1206': {
             provider: 'gemini',
             endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-exp-1206:generateContent',
-            apiKey: 'AIzaSyCxXAhCxq272p4K0u_hZ_oW1MzJnMWWMaw',
             name: 'Gemini Experimental',
             description: {
                 ar: 'نموذج تجريبي بقدرات محسنة، قد يكون غير مستقر أحياناً',
                 en: 'Experimental model with enhanced capabilities, may be unstable sometimes'
             },
             maxTokens: 8192,
-            temperature: 0.8
+            temperature: 0.9
         }
     }
 };
@@ -162,6 +175,10 @@ const TRANSLATIONS = {
         hashtagsTitle: 'الهاشتاجز المناسبة',
         visualSuggestionsTitle: 'اقتراحات المحتوى المرئي',
         engagementStrategiesTitle: 'استراتيجيات التفاعل',
+        // API Key dropdown translations
+        apiKeyLabel: 'مفتاح API',
+        apiKey1: 'Primary Key (المفتاح الأساسي)',
+        apiKey2: 'Secondary Key (المفتاح الثانوي)',
         // Model dropdown translations
         modelLabel: 'نموذج الذكاء الاصطناعي',
         modelGeminiFlash: 'Gemini 1.5 Flash (سريع)',
@@ -238,6 +255,10 @@ const TRANSLATIONS = {
         hashtagsTitle: 'Relevant Hashtags',
         visualSuggestionsTitle: 'Visual Content Suggestions',
         engagementStrategiesTitle: 'Engagement Strategies',
+        // API Key dropdown translations
+        apiKeyLabel: 'API Key',
+        apiKey1: 'Primary Key',
+        apiKey2: 'Secondary Key',
         // Model dropdown translations
         modelLabel: 'AI Model',
         modelGeminiFlash: 'Gemini 1.5 Flash (Fast)',
@@ -289,6 +310,8 @@ const elements = {
     englishBtn: document.getElementById('englishBtn'),
     topicInput: document.getElementById('topicInput'),
     additionalInfo: document.getElementById('additionalInfo'),
+    apiKeySelect: document.getElementById('apiKeySelect'),
+    apiKeyInfo: document.getElementById('apiKeyInfo'),
     modelSelect: document.getElementById('modelSelect'),
     modelInfo: document.getElementById('modelInfo'),
     examplesSelect: document.getElementById('examplesSelect'),
@@ -328,6 +351,7 @@ function setupEventListeners() {
     elements.downloadBtn.addEventListener('click', downloadScript);
     
     // Dropdown event listeners
+    elements.apiKeySelect.addEventListener('change', handleApiKeyChange);
     elements.modelSelect.addEventListener('change', handleModelChange);
     elements.examplesSelect.addEventListener('change', handleExampleChange);
     elements.themeSelect.addEventListener('change', handleThemeChange);
@@ -339,6 +363,26 @@ function setupEventListeners() {
             generateScript();
         }
     });
+    
+    // Initialize descriptions
+    updateApiKeyDescription();
+    updateModelDescription();
+}
+
+// Handle API key selection
+function handleApiKeyChange() {
+    updateApiKeyDescription();
+}
+
+// Update API key description
+function updateApiKeyDescription() {
+    const selectedKey = elements.apiKeySelect.value;
+    const keyConfig = CONFIG.API_KEYS[selectedKey];
+    
+    if (keyConfig && keyConfig.description) {
+        const description = keyConfig.description[currentLanguage];
+        document.getElementById('apiKeyDescription').textContent = description;
+    }
 }
 
 // Handle model selection
@@ -468,10 +512,15 @@ function updateLanguage(lang) {
     document.getElementById('footerText').textContent = t.footerText;
     
     // Update dropdown labels and options
+    document.getElementById('apiKeyLabel').textContent = t.apiKeyLabel;
     document.getElementById('modelLabel').textContent = t.modelLabel;
     document.getElementById('examplesLabel').textContent = t.examplesLabel;
     document.getElementById('themeLabel').textContent = t.themeLabel;
     document.getElementById('audienceLabel').textContent = t.audienceLabel;
+    
+    // Update API key options
+    document.getElementById('apiKey1').textContent = t.apiKey1;
+    document.getElementById('apiKey2').textContent = t.apiKey2;
     
     // Update model options
     document.getElementById('modelGeminiFlash').textContent = t.modelGeminiFlash;
@@ -527,6 +576,10 @@ function updateLanguage(lang) {
     document.getElementById('hashtagsTitle').innerHTML = `<i class="fas fa-hashtag"></i> ${t.hashtagsTitle}`;
     document.getElementById('visualSuggestionsTitle').innerHTML = `<i class="fas fa-palette"></i> ${t.visualSuggestionsTitle}`;
     document.getElementById('engagementStrategiesTitle').innerHTML = `<i class="fas fa-rocket"></i> ${t.engagementStrategiesTitle}`;
+    
+    // Update descriptions
+    updateApiKeyDescription();
+    updateModelDescription();
     
     // Update view toggle tooltip
     updateViewDisplay();
@@ -1006,17 +1059,23 @@ function getAudienceDescription(audience) {
 // Call AI API with retry mechanism (Google Gemini only)
 async function callAIAPI(prompt, maxRetries = 3) {
     const selectedModel = elements.modelSelect.value;
+    const selectedApiKey = elements.apiKeySelect.value;
     const modelConfig = CONFIG.MODELS[selectedModel];
+    const apiKeyConfig = CONFIG.API_KEYS[selectedApiKey];
     
     if (!modelConfig) {
         throw new Error('نموذج الذكاء الاصطناعي غير صحيح');
     }
     
-    return await callGeminiAPI(prompt, modelConfig, maxRetries);
+    if (!apiKeyConfig) {
+        throw new Error('مفتاح API غير صحيح');
+    }
+    
+    return await callGeminiAPI(prompt, modelConfig, selectedModel, apiKeyConfig.key, maxRetries);
 }
 
 // Call Gemini API
-async function callGeminiAPI(prompt, modelConfig, maxRetries = 3) {
+async function callGeminiAPI(prompt, modelConfig, selectedModel, apiKey, maxRetries = 3) {
     const requestBody = {
         contents: [{
             parts: [{
@@ -1033,7 +1092,7 @@ async function callGeminiAPI(prompt, modelConfig, maxRetries = 3) {
     
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
         try {
-            const response = await fetch(`${modelConfig.endpoint}?key=${modelConfig.apiKey}`, {
+            const response = await fetch(`${modelConfig.endpoint}?key=${apiKey}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

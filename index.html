@@ -50,6 +50,21 @@
 
                 <!-- Dropdowns Section -->
                 <div class="dropdowns-section">
+                    <!-- API Key Selection -->
+                    <div class="form-group dropdown-group">
+                        <label for="apiKeySelect" class="label">
+                            <i class="fas fa-key"></i>
+                            <span id="apiKeyLabel">مفتاح API</span>
+                        </label>
+                        <select id="apiKeySelect" class="dropdown-select">
+                            <option value="key1" id="apiKey1">Primary Key (المفتاح الأساسي)</option>
+                            <option value="key2" id="apiKey2">Secondary Key (المفتاح الثانوي)</option>
+                        </select>
+                        <div class="model-info" id="apiKeyInfo">
+                            <small id="apiKeyDescription">المفتاح الأساسي</small>
+                        </div>
+                    </div>
+
                     <!-- AI Model Selection -->
                     <div class="form-group dropdown-group">
                         <label for="modelSelect" class="label">
