@@ -6,6 +6,11 @@
       "use": "@vercel/static"
     }
   ],
+  "functions": {
+    "api/generate.js": {
+      "maxDuration": 30
+    }
+  },
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [

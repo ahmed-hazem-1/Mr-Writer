@@ -1,10 +1,9 @@
 // Configuration
 const CONFIG = {
-    // Multiple Gemini API Keys
+    // Multiple Gemini API Keys (for display only - actual keys stored in environment)
     API_KEYS: {
         'key1': {
             name: 'Primary Key',
-            key: 'AIzaSyCxXAhCxq272p4K0u_hZ_oW1MzJnMWWMaw',
             description: {
                 ar: 'المفتاح الأساسي',
                 en: 'Primary Key'
@@ -12,7 +11,6 @@ const CONFIG = {
         },
         'key2': {
             name: 'Secondary Key',
-            key: 'AIzaSyBflO2FleHPBNwlvXncR5U4UPelBSA_HIw',
             description: {
                 ar: 'المفتاح الثانوي',
                 en: 'Secondary Key'
@@ -33,37 +31,48 @@ const CONFIG = {
             maxTokens: 8192,
             temperature: 0.7
         },
-        'gemini-1.5-pro': {
+        'gemini-2.0-flash': {
             provider: 'gemini',
-            endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent',
-            name: 'Gemini 1.5 Pro',
+            endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent',
+            name: 'Gemini 2.0 Flash',
             description: {
-                ar: 'نموذج متقدم للمهام المعقدة، جودة عالية وإبداع أكبر ومعالجة أطول',
-                en: 'Advanced model for complex tasks, high quality, more creativity and longer processing'
+                ar: 'أحدث نموذج سريع مع تحسينات كبيرة في الفهم والأداء',
+                en: 'Latest fast model with significant improvements in understanding and performance'
+            },
+            maxTokens: 8192,
+            temperature: 0.7
+        },
+        'gemini-2.0-flash-lite': {
+            provider: 'gemini',
+            endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent',
+            name: 'Gemini 2.0 Flash Lite',
+            description: {
+                ar: 'نسخة خفيفة وسريعة جداً، مثالية للمهام البسيطة',
+                en: 'Ultra-fast lightweight version, perfect for simple tasks'
+            },
+            maxTokens: 4096,
+            temperature: 0.6
+        },
+        'gemini-2.5-flash': {
+            provider: 'gemini',
+            endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent',
+            name: 'Gemini 2.5 Flash',
+            description: {
+                ar: 'نموذج متطور بسرعة عالية وذكاء محسن للمحتوى الإبداعي',
+                en: 'Advanced model with high speed and enhanced intelligence for creative content'
             },
             maxTokens: 8192,
             temperature: 0.8
         },
-        'gemini-1.0-pro': {
+        'gemini-2.5-pro': {
             provider: 'gemini',
-            endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.0-pro-latest:generateContent',
-            name: 'Gemini 1.0 Pro',
+            endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent',
+            name: 'Gemini 2.5 Pro',
             description: {
-                ar: 'نموذج مستقر وموثوق، مناسب للاستخدام المهني وأقل استهلاكاً',
-                en: 'Stable and reliable model, suitable for professional use and lower consumption'
+                ar: 'أقوى نموذج متاح، جودة استثنائية للمهام المعقدة والمحتوى المتقدم',
+                en: 'Most powerful model available, exceptional quality for complex tasks and advanced content'
             },
-            maxTokens: 2048,
-            temperature: 0.7
-        },
-        'gemini-exp-1206': {
-            provider: 'gemini',
-            endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-exp-1206:generateContent',
-            name: 'Gemini Experimental',
-            description: {
-                ar: 'نموذج تجريبي بقدرات محسنة، قد يكون غير مستقر أحياناً',
-                en: 'Experimental model with enhanced capabilities, may be unstable sometimes'
-            },
-            maxTokens: 8192,
+            maxTokens: 32768,
             temperature: 0.9
         }
     }
@@ -181,10 +190,11 @@ const TRANSLATIONS = {
         apiKey2: 'Secondary Key (المفتاح الثانوي)',
         // Model dropdown translations
         modelLabel: 'نموذج الذكاء الاصطناعي',
-        modelGeminiFlash: 'Gemini 1.5 Flash (سريع)',
-        modelGeminiPro: 'Gemini 1.5 Pro (متقدم)',
-        modelGemini1Pro: 'Gemini 1.0 Pro (مستقر)',
-        modelGeminiExp: 'Gemini Experimental (تجريبي)',
+        modelGemini15Flash: 'Gemini 1.5 Flash',
+        modelGemini20Flash: 'Gemini 2.0 Flash',
+        modelGemini20FlashLite: 'Gemini 2.0 Flash Lite',
+        modelGemini25Flash: 'Gemini 2.5 Flash',
+        modelGemini25Pro: 'Gemini 2.5 Pro',
         // Dropdown translations
         examplesLabel: 'أمثلة جاهزة',
         themeLabel: 'نمط الكتابة',
@@ -261,10 +271,11 @@ const TRANSLATIONS = {
         apiKey2: 'Secondary Key',
         // Model dropdown translations
         modelLabel: 'AI Model',
-        modelGeminiFlash: 'Gemini 1.5 Flash (Fast)',
-        modelGeminiPro: 'Gemini 1.5 Pro (Advanced)',
-        modelGemini1Pro: 'Gemini 1.0 Pro (Stable)',
-        modelGeminiExp: 'Gemini Experimental (Beta)',
+        modelGemini15Flash: 'Gemini 1.5 Flash',
+        modelGemini20Flash: 'Gemini 2.0 Flash',
+        modelGemini20FlashLite: 'Gemini 2.0 Flash Lite',
+        modelGemini25Flash: 'Gemini 2.5 Flash',
+        modelGemini25Pro: 'Gemini 2.5 Pro',
         // Dropdown translations
         examplesLabel: 'Ready Examples',
         themeLabel: 'Writing Style',
@@ -523,10 +534,11 @@ function updateLanguage(lang) {
     document.getElementById('apiKey2').textContent = t.apiKey2;
     
     // Update model options
-    document.getElementById('modelGeminiFlash').textContent = t.modelGeminiFlash;
-    document.getElementById('modelGeminiPro').textContent = t.modelGeminiPro;
-    document.getElementById('modelGemini1Pro').textContent = t.modelGemini1Pro;
-    document.getElementById('modelGeminiExp').textContent = t.modelGeminiExp;
+    document.getElementById('modelGemini15Flash').textContent = t.modelGemini15Flash;
+    document.getElementById('modelGemini20Flash').textContent = t.modelGemini20Flash;
+    document.getElementById('modelGemini20FlashLite').textContent = t.modelGemini20FlashLite;
+    document.getElementById('modelGemini25Flash').textContent = t.modelGemini25Flash;
+    document.getElementById('modelGemini25Pro').textContent = t.modelGemini25Pro;
     
     // Update model description
     updateModelDescription();
@@ -1056,7 +1068,7 @@ function getAudienceDescription(audience) {
     return audienceDescriptions[audience] || '';
 }
 
-// Call AI API with retry mechanism (Google Gemini only)
+// Call AI API with retry mechanism (using Vercel API)
 async function callAIAPI(prompt, maxRetries = 3) {
     const selectedModel = elements.modelSelect.value;
     const selectedApiKey = elements.apiKeySelect.value;
@@ -1071,95 +1083,55 @@ async function callAIAPI(prompt, maxRetries = 3) {
         throw new Error('مفتاح API غير صحيح');
     }
     
-    return await callGeminiAPI(prompt, modelConfig, selectedModel, apiKeyConfig.key, maxRetries);
-}
-
-// Call Gemini API
-async function callGeminiAPI(prompt, modelConfig, selectedModel, apiKey, maxRetries = 3) {
-    const requestBody = {
-        contents: [{
-            parts: [{
-                text: prompt
-            }]
-        }],
-        generationConfig: {
-            temperature: modelConfig.temperature,
-            topK: 40,
-            topP: 0.95,
-            maxOutputTokens: modelConfig.maxTokens,
+    try {
+        const response = await fetch('/api/generate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                prompt: prompt,
+                selectedModel: selectedModel,
+                selectedApiKey: selectedApiKey,
+                maxRetries: maxRetries
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (!response.ok) {
+            if (response.status === 429 && data.suggestion) {
+                const currentModel = modelConfig.name;
+                const suggestedModel = getSuggestedAlternativeModel(selectedModel);
+                const suggestionText = currentLanguage === 'ar' ? 
+                    `تم تجاوز حد الطلبات في ${currentModel}. جرب نموذج ${suggestedModel} بدلاً منه.` :
+                    `Rate limit exceeded for ${currentModel}. Try ${suggestedModel} instead.`;
+                throw new Error(suggestionText);
+            }
+            
+            throw new Error(data.error || 'خطأ في الخدمة');
         }
-    };
-    
-    for (let attempt = 1; attempt <= maxRetries; attempt++) {
-        try {
-            const response = await fetch(`${modelConfig.endpoint}?key=${apiKey}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(requestBody)
-            });
-            
-            if (response.status === 503 || response.status === 429) {
-                if (attempt < maxRetries) {
-                    const waitTime = Math.pow(2, attempt) * 1000;
-                    await new Promise(resolve => setTimeout(resolve, waitTime));
-                    continue;
-                }
-            }
-            
-            if (!response.ok) {
-                const errorText = await response.text();
-                
-                // Specific error handling for different Gemini models
-                if (response.status === 429) {
-                    const currentModel = modelConfig.name;
-                    const suggestedModel = getSuggestedAlternativeModel(selectedModel);
-                    const suggestionText = currentLanguage === 'ar' ? 
-                        `تم تجاوز حد الطلبات في ${currentModel}. جرب نموذج ${suggestedModel} بدلاً منه.` :
-                        `Rate limit exceeded for ${currentModel}. Try ${suggestedModel} instead.`;
-                    throw new Error(suggestionText);
-                }
-                
-                throw new Error(`Gemini API request failed: ${response.status} - ${errorText}`);
-            }
-            
-            const data = await response.json();
-            
-            if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
-                throw new Error('Invalid Gemini API response structure');
-            }
-            
-            return data.candidates[0].content.parts[0].text;
-            
-        } catch (error) {
-            if (attempt === maxRetries) {
-                if (error.message.includes('503')) {
-                    throw new Error(`خدمة ${modelConfig.name} غير متاحة حالياً. جرب نموذج آخر.`);
-                } else if (error.message.includes('429')) {
-                    throw new Error(error.message); // Use the specific suggestion message
-                } else if (error.message.includes('403')) {
-                    throw new Error('مشكلة في مفتاح الـ API. تحقق من الإعدادات.');
-                } else {
-                    throw new Error(`خطأ في ${modelConfig.name}: ${error.message}`);
-                }
-            }
-            
-            if (attempt < maxRetries) {
-                const waitTime = 2000 * attempt;
-                await new Promise(resolve => setTimeout(resolve, waitTime));
-            }
+        
+        return data.content;
+        
+    } catch (error) {
+        if (error.message.includes('fetch')) {
+            throw new Error(currentLanguage === 'ar' ? 
+                'خطأ في الاتصال بالخدمة' : 
+                'Connection error to service');
         }
+        throw error;
     }
 }
 
 // Get suggested alternative model when current model fails
 function getSuggestedAlternativeModel(currentModel) {
     const alternatives = {
-        'gemini-1.5-flash': 'Gemini 1.5 Pro',
-        'gemini-1.5-pro': 'Gemini 1.0 Pro',
-        'gemini-1.0-pro': 'Gemini Experimental',
-        'gemini-exp-1206': 'Gemini 1.5 Flash'
+        'gemini-1.5-flash': 'Gemini 2.0 Flash',
+        'gemini-2.0-flash': 'Gemini 2.5 Flash',
+        'gemini-2.0-flash-lite': 'Gemini 1.5 Flash',
+        'gemini-2.5-flash': 'Gemini 2.5 Pro',
+        'gemini-2.5-pro': 'Gemini 2.0 Flash'
     };
     
     return alternatives[currentModel] || 'نموذج آخر';
