@@ -1,9 +1,10 @@
 // Configuration
 const CONFIG = {
-    // Multiple Gemini API Keys (for display only - actual keys stored in environment)
+    // Multiple Gemini API Keys (for display only - actual keys stored in environment for production)
     API_KEYS: {
         'key1': {
             name: 'Primary Key',
+            key: 'AIzaSyCxXAhCxq272p4K0u_hZ_oW1MzJnMWWMaw', // Used for local development
             description: {
                 ar: 'المفتاح الأساسي',
                 en: 'Primary Key'
@@ -11,6 +12,7 @@ const CONFIG = {
         },
         'key2': {
             name: 'Secondary Key',
+            key: 'AIzaSyBflO2FleHPBNwlvXncR5U4UPelBSA_HIw', // Used for local development
             description: {
                 ar: 'المفتاح الثانوي',
                 en: 'Secondary Key'
@@ -80,68 +82,123 @@ const CONFIG = {
 
 // System Messages
 const SYSTEM_MESSAGES = {
-    all_languages: `You are an AI assistant specialized in creating highly engaging and viral social media content scripts. Your primary task is to write content about AI, tailoring the language and tone to the user's request, ensuring every part of the script serves a single purpose: to trigger the platform's algorithm in favor of virality.
+    base: `You are an AI assistant specialized in creating highly engaging and viral social media content scripts. Your primary task is to write content tailored to the specific theme and tone requested, ensuring every part of the script serves the purpose of creating engaging, authentic content.
 
-**CRITICAL INSTRUCTION: You must create ORIGINAL and UNIQUE content. Do NOT copy or follow templates. Each script must be fresh, creative, and innovative. Even if given examples or styles, create something completely new and authentic.**
+**CRITICAL INSTRUCTION: You must create ORIGINAL and UNIQUE content. Do NOT copy or follow templates. Each script must be fresh, creative, and innovative.**`,
 
-**Main Objective:** Generate a well-structured, viral-optimized script that captures attention and maximizes engagement and reach through ORIGINAL creativity.
+    engaging: `${this.base || ''}
 
-**The Scripting Blueprint:**
+**THEME: ENGAGING & EXCITING**
+Your goal is to create content that's thrilling, captivating, and keeps readers on the edge of their seats.
 
-### 🤯 1. The Hook (Immediate Capture):
-* Start with a completely ORIGINAL, powerful line that creates instant curiosity or astonishment.
-* Use a shocking question, surprising fact, or unexpected statement that's unique to your topic.
-* **Examples (in different languages):**
-    * Arabic: "🤯 هتصدق لو قولتلك إن..."
-    * English: "🤯 What if I told you..."
-* **Your Goal:** A one-liner that makes the reader say, "Wait, what?!" - but make it UNIQUE and ORIGINAL.
+**Tone Guidelines:**
+- Use dynamic, energetic language
+- Create suspense and excitement
+- Include power words: "amazing", "incredible", "shocking", "mind-blowing"
+- Build momentum throughout the script
+- Use emojis strategically for impact: 🔥⚡🤯💥🚀
 
-### 📖 2. The Simple Story (Core Analogy):
-* Explain the complex topic using ONE completely ORIGINAL and relatable analogy from everyday life.
-* Create a NEW analogy that hasn't been used before - be creative and innovative.
-* **Examples (in different languages):**
-    * Arabic: "زي الطفل العبقري اللي..."
-    * English: "It's like a genius child who..."
-* **Your Goal:** One short paragraph with a completely FRESH and ORIGINAL analogy.
+**Structure for ENGAGING content:**
+1. **Hook**: Start with something that makes people stop scrolling immediately
+2. **Build-up**: Create anticipation and curiosity
+3. **Revelation**: Deliver the exciting information
+4. **Impact**: Show why it matters to them personally
+5. **Action**: Get them engaged and sharing`,
 
-### ⚡ 3. The Shocking Value (Credibility & Surprise):
-* Introduce one unexpected fact or a mind-blowing statistic - research REAL current facts, don't make them up.
-* Find genuine surprising information that adds credibility and creates a "wow" moment.
-* **Examples (in different languages):**
-    * Arabic: "⚡ واللي هيصدمك أكتر إن..."
-    * English: "⚡ And here's the shocking part..."
-* **Your Goal:** A single, powerful REAL fact that makes the reader go, "No way!"
+    educational: `You are an AI assistant specialized in creating educational and informative social media content scripts.
 
-### 🔥 4. The Power Conclusion (Personal Connection):
-* Deliver a direct, compelling message that makes the reader feel personally connected to the topic.
-* Create an ORIGINAL conclusion that summarizes the core idea in one memorable sentence.
-* **Examples (in different languages):**
-    * Arabic: "🔥 عشان كده لازم تعرف إن..."
-    * English: "🔥 That's why you need to know..."
-* **Your Goal:** A motivational punchline that inspires and convinces the reader - make it UNIQUE.
+**THEME: EDUCATIONAL & INFORMATIVE**
+Your goal is to teach something valuable while keeping it accessible and interesting.
 
-### 💬 5. The Call to Action (Specific & Simple):
-* Ask the reader to perform one specific, easy-to-do action to boost engagement and reach.
-* Create an ORIGINAL call-to-action that fits naturally with your content.
-* **Examples (in different languages):**
-    * Arabic: "💬 اكتب في الكومنتس: 'مذهل!'"
-    * English: "💬 Comment 'Mindblown!' below."
-* **Your Goal:** A single, clear command that drives interaction - make it creative and unique.
+**Tone Guidelines:**
+- Professional yet approachable
+- Clear, structured explanations
+- Use educational phrases: "Here's what you need to know", "The key insight is", "Research shows"
+- Focus on facts, data, and practical knowledge
+- Minimal emojis, use 📚📊💡🎯 sparingly
 
-**Golden Rules for ORIGINAL Scripting:**
-* **NO TEMPLATES:** Never follow the same structure for different topics. Each script must be completely unique.
-* **CREATIVE FREEDOM:** Use the 5-part structure as a guide, but express each part in completely original ways.
-* **AUTHENTIC VOICE:** Write as if you're personally excited about the topic and sharing it with a friend.
-* **FRESH ANALOGIES:** Always create new, unexpected comparisons that haven't been used before.
-* **REAL FACTS:** Use genuine, current information - research real statistics and facts.
-* **UNIQUE HOOKS:** Every opening must be completely different and original.
-* **Personal Touch:** Add personality and originality to every sentence.
-* **Hierarchical Structure:** Each part must build on the previous one, leading the reader seamlessly to the CTA.
-* **Extreme Focus:** Stick to one analogy, one fact, one message - but make them ORIGINAL.
-* **Tone:** Be friendly, conversational, and energetic - with your own unique voice.
-* **Final Output:** The script must be ready to be posted directly, without any extra explanations or formatting.
-* **Language:** Write the script in the requested language (e.g., Egyptian Arabic, English) with the appropriate cultural nuances and emojis.
-* **ORIGINALITY ABOVE ALL:** This is the most important rule - create something completely new every time.`
+**Structure for EDUCATIONAL content:**
+1. **Problem/Question**: Present what people don't know
+2. **Explanation**: Break down complex concepts simply
+3. **Evidence**: Provide facts, statistics, or research
+4. **Application**: Show how to use this knowledge
+5. **Learn More**: Encourage further learning`,
+
+    humorous: `You are an AI assistant specialized in creating funny and entertaining social media content scripts.
+
+**THEME: HUMOROUS & ENTERTAINING**
+Your goal is to make people laugh while delivering your message.
+
+**Tone Guidelines:**
+- Light-hearted and playful
+- Use humor, jokes, and funny analogies
+- Self-deprecating humor when appropriate
+- Funny phrases: "Plot twist:", "Meanwhile...", "The audacity!", "I can't even..."
+- Comedy emojis: 😂🤣😭💀🙃😅🤪
+
+**Structure for HUMOROUS content:**
+1. **Setup**: Create a funny scenario or observation
+2. **Build-up**: Add comedic elements and timing
+3. **Punchline**: Deliver the funny revelation
+4. **Relate**: Connect the humor to the audience
+5. **Laugh Together**: Encourage sharing the fun`,
+
+    serious: `You are an AI assistant specialized in creating professional and serious social media content scripts.
+
+**THEME: SERIOUS & PROFESSIONAL**
+Your goal is to convey important information with authority and credibility.
+
+**Tone Guidelines:**
+- Professional, authoritative voice
+- Formal language without being boring
+- Focus on important implications
+- Use serious phrases: "Critical to understand", "The reality is", "Evidence suggests"
+- Minimal emojis, only professional ones: ⚠️📈💼🎯
+
+**Structure for SERIOUS content:**
+1. **Statement**: Present the important issue clearly
+2. **Context**: Explain why this matters now
+3. **Analysis**: Break down the implications
+4. **Consequences**: Show what's at stake
+5. **Consideration**: Encourage thoughtful reflection`,
+
+    inspirational: `You are an AI assistant specialized in creating motivational and inspiring social media content scripts.
+
+**THEME: INSPIRATIONAL & MOTIVATIONAL**
+Your goal is to uplift, motivate, and inspire action.
+
+**Tone Guidelines:**
+- Uplifting and empowering
+- Use motivational language
+- Focus on possibilities and potential
+- Inspirational phrases: "You have the power to", "Imagine if", "Your potential is unlimited"
+- Inspiring emojis: ✨🌟💪🚀🔥💎🏆
+
+**Structure for INSPIRATIONAL content:**
+1. **Vision**: Paint a picture of what's possible
+2. **Challenge**: Acknowledge current obstacles
+3. **Transformation**: Show the path to change
+4. **Empowerment**: Remind them of their strength
+5. **Action**: Inspire them to take the first step`,
+
+    storytelling: `You are an AI assistant specialized in creating narrative-driven social media content scripts.
+
+**THEME: STORYTELLING & PERSONAL**
+Your goal is to tell compelling stories that connect emotionally with the audience.
+
+**Tone Guidelines:**
+- Conversational and personal
+- Use narrative techniques
+- Include personal touches: "Let me tell you about", "Picture this", "There was this moment when"
+- Emotional connection is key
+- Story emojis: 📖✨🎭💫🗣️
+
+**Structure for STORYTELLING content:**
+1. **Opening**: Set the scene with a story hook
+2. **Character**: Introduce relatable characters
+3. **Conflict**: Present the challenge or problem
+4. **Resolution**: Show how it was overcome
+5. **Lesson**: Extract the meaningful takeaway`
 };
 
 // Translations
@@ -721,39 +778,89 @@ function generateImagePrompts(scriptText, topic, isArabic) {
 
 // Generate relevant hashtags based on content
 function generateHashtags(scriptText, topic, isArabic) {
-    const hashtags = [];
+    const hashtags = new Set(); // Use Set to avoid duplicates
     
-    // Core topic hashtags
-    const topicWords = topic.split(' ').filter(word => word.length > 2);
-    topicWords.forEach(word => {
-        if (isArabic) {
-            hashtags.push(`#${word}`);
-        } else {
-            hashtags.push(`#${word.replace(/\s+/g, '')}`);
+    // Smart content analysis for hashtags
+    const content = (scriptText + ' ' + topic).toLowerCase();
+    
+    // Core category hashtags based on content analysis
+    const categories = {
+        ai: {
+            keywords: ['ذكاء اصطناعي', 'ai', 'artificial intelligence', 'تقنية', 'technology', 'روبوت', 'robot', 'آلة', 'machine learning'],
+            hashtags: isArabic ? ['#ذكاء_اصطناعي', '#AI', '#تقنية', '#تكنولوجيا', '#مستقبل_التقنية'] : ['#AI', '#ArtificialIntelligence', '#Technology', '#MachineLearning', '#FutureOfTech']
+        },
+        education: {
+            keywords: ['تعليم', 'education', 'تعلم', 'learning', 'دراسة', 'study', 'طلاب', 'students', 'مدرسة', 'school'],
+            hashtags: isArabic ? ['#تعليم', '#تعلم', '#دراسة', '#طلاب', '#تطوير_المهارات'] : ['#Education', '#Learning', '#Study', '#Students', '#SkillDevelopment']
+        },
+        business: {
+            keywords: ['عمل', 'business', 'شركة', 'company', 'ريادة', 'entrepreneurship', 'مشروع', 'project', 'استثمار', 'investment'],
+            hashtags: isArabic ? ['#ريادة_الأعمال', '#عمل', '#استثمار', '#نجاح', '#تطوير_الذات'] : ['#Business', '#Entrepreneurship', '#Investment', '#Success', '#SelfDevelopment']
+        },
+        social_media: {
+            keywords: ['سوشيال ميديا', 'social media', 'تسويق', 'marketing', 'محتوى', 'content', 'انستجرام', 'instagram', 'فيسبوك', 'facebook'],
+            hashtags: isArabic ? ['#سوشيال_ميديا', '#تسويق', '#محتوى', '#تسويق_رقمي', '#إنستجرام'] : ['#SocialMedia', '#Marketing', '#Content', '#DigitalMarketing', '#Instagram']
+        },
+        health: {
+            keywords: ['صحة', 'health', 'لياقة', 'fitness', 'رياضة', 'sport', 'تمرين', 'exercise', 'طب', 'medical'],
+            hashtags: isArabic ? ['#صحة', '#لياقة', '#رياضة', '#نمط_حياة_صحي', '#تمارين'] : ['#Health', '#Fitness', '#Workout', '#HealthyLifestyle', '#Wellness']
+        },
+        finance: {
+            keywords: ['مال', 'money', 'عملة', 'currency', 'استثمار', 'investment', 'بنك', 'bank', 'اقتصاد', 'economy'],
+            hashtags: isArabic ? ['#استثمار', '#مال', '#اقتصاد', '#تداول', '#ثروة'] : ['#Investment', '#Money', '#Finance', '#Trading', '#Wealth']
+        },
+        lifestyle: {
+            keywords: ['حياة', 'life', 'نمط', 'lifestyle', 'سعادة', 'happiness', 'نجاح', 'success', 'تطوير', 'development'],
+            hashtags: isArabic ? ['#نمط_حياة', '#تطوير_الذات', '#نجاح', '#سعادة', '#إلهام'] : ['#Lifestyle', '#SelfImprovement', '#Success', '#Happiness', '#Inspiration']
+        }
+    };
+    
+    // Analyze content and add relevant category hashtags
+    Object.values(categories).forEach(category => {
+        const hasKeyword = category.keywords.some(keyword => 
+            content.includes(keyword.toLowerCase())
+        );
+        if (hasKeyword) {
+            category.hashtags.forEach(tag => hashtags.add(tag));
         }
     });
     
-    // Content-based hashtags
-    if (/(ذكاء اصطناعي|AI)/.test(scriptText)) {
-        hashtags.push(isArabic ? '#ذكاء_اصطناعي' : '#ArtificialIntelligence', '#AI', '#تقنية');
+    // Add trending and engagement hashtags
+    const trendingHashtags = isArabic ? [
+        '#فيروسي', '#ترند', '#اكسبلور', '#لايك', '#شير',
+        '#تفاعل', '#انتشار', '#محتوى_مميز', '#ابداع', '#اهتمام'
+    ] : [
+        '#Viral', '#Trending', '#Explore', '#Like', '#Share',
+        '#Engagement', '#ContentCreator', '#Creative', '#Interesting', '#MustWatch'
+    ];
+    
+    // Add 3-4 trending hashtags
+    trendingHashtags.slice(0, 4).forEach(tag => hashtags.add(tag));
+    
+    // Add language-specific hashtags
+    if (isArabic) {
+        hashtags.add('#عربي');
+        hashtags.add('#المحتوى_العربي');
+    } else {
+        hashtags.add('#English');
+        hashtags.add('#GlobalContent');
     }
     
-    if (/(تعليم|education|تعلم|learning)/.test(scriptText)) {
-        hashtags.push(isArabic ? '#تعليم' : '#Education', isArabic ? '#تعلم' : '#Learning');
-    }
+    // Add platform-specific hashtags
+    const platformTags = isArabic ? [
+        '#لينكدان', '#تويتر', '#انستجرام', '#فيسبوك', '#تيك_توك'
+    ] : [
+        '#LinkedIn', '#Twitter', '#Instagram', '#Facebook', '#TikTok'
+    ];
     
-    if (/(مستقبل|future|تطوير|development)/.test(scriptText)) {
-        hashtags.push(isArabic ? '#مستقبل' : '#Future', isArabic ? '#تطوير' : '#Development');
-    }
+    // Add 2 platform hashtags randomly
+    const randomPlatforms = platformTags.sort(() => 0.5 - Math.random()).slice(0, 2);
+    randomPlatforms.forEach(tag => hashtags.add(tag));
     
-    // Platform and engagement hashtags
-    hashtags.push(
-        isArabic ? '#فيروسي' : '#Viral',
-        isArabic ? '#ترند' : '#Trending',
-        isArabic ? '#اكسبلور' : '#Explore'
-    );
+    // Convert Set to Array and limit to 12-15 hashtags
+    const finalHashtags = Array.from(hashtags).slice(0, 15);
     
-    return hashtags.slice(0, 15); // Limit to 15 hashtags
+    return finalHashtags;
 }
 
 // Generate visual suggestions specific to content
@@ -986,13 +1093,19 @@ async function generateScript() {
 
 // Build prompt for API
 function buildPrompt(topic, additionalInfo) {
-    const systemMessage = SYSTEM_MESSAGES.all_languages;
-    let prompt = systemMessage + '\n\n';
-    
-    // Get selected theme
+    // Get selected theme and use appropriate system message
     const selectedTheme = elements.themeSelect.value;
     const customTheme = elements.customTheme.value.trim();
-    const themeText = selectedTheme === 'custom' ? customTheme : getThemeDescription(selectedTheme);
+    
+    // Select the right system message based on theme
+    let systemMessage;
+    if (selectedTheme === 'custom' && customTheme) {
+        systemMessage = SYSTEM_MESSAGES.base + `\n\n**CUSTOM THEME: ${customTheme}**\nAdapt your writing style to match this custom theme while maintaining engagement.`;
+    } else {
+        systemMessage = SYSTEM_MESSAGES[selectedTheme] || SYSTEM_MESSAGES.engaging;
+    }
+    
+    let prompt = systemMessage + '\n\n';
     
     // Get selected audience
     const selectedAudience = elements.audienceSelect.value;
@@ -1000,12 +1113,9 @@ function buildPrompt(topic, additionalInfo) {
     const audienceText = selectedAudience === 'custom' ? customAudience : getAudienceDescription(selectedAudience);
     
     if (currentLanguage === 'ar') {
-        prompt += `**تعليمات مهمة جداً: يجب إنشاء محتوى أصلي ومبدع 100%. لا تنسخ أو تتبع قوالب جاهزة. كل أسكربت يجب أن يكون فريد ومبتكر.**\n\n`;
+        prompt += `**تعليمات مهمة جداً: يجب إنشاء محتوى أصلي ومبدع 100% يتماشى مع النمط المختار. لا تنسخ أو تتبع قوالب جاهزة.**\n\n`;
         prompt += `الموضوع المطلوب: ${topic}\n`;
-        
-        if (themeText) {
-            prompt += `النمط المطلوب (كدليل إرشادي فقط - لا تنسخه): ${themeText}\n`;
-        }
+        prompt += `النمط المطلوب: ${selectedTheme === 'custom' ? customTheme : getThemeDescription(selectedTheme)}\n`;
         
         if (audienceText) {
             prompt += `الجمهور المستهدف: ${audienceText}\n`;
@@ -1015,24 +1125,34 @@ function buildPrompt(topic, additionalInfo) {
             prompt += `معلومات إضافية: ${additionalInfo}\n`;
         }
         
-        prompt += '\n**المطلوب: اكتب أسكربت أصلي ومبدع لهذا الموضوع. لا تستخدم أي قوالب جاهزة. كن مبدعاً في الخطاف والتشبيه والحقائق. كل جملة يجب أن تكون فريدة ومبتكرة. استخدم إبداعك الشخصي واكتب كأنك تشارك صديق مقرب شيء مثير اكتشفته للتو.**';
+        prompt += `\n**المطلوب**: اكتب نص منشور لوسائل التواصل الاجتماعي باللغة العربية يتماشى تماماً مع النمط المختار "${selectedTheme === 'custom' ? customTheme : getThemeDescription(selectedTheme)}" ويجذب انتباه "${audienceText}". 
+
+**مهم جداً**: 
+- النص يجب أن يكون جاهز للنسخ والنشر مباشرة
+- بدون علامات # في المحتوى الأساسي أو شروحات أو تفسيرات إضافية
+- ابدأ مباشرة بالمحتوى الأساسي
+- في النهاية ضع سطرين فارغين ثم أضف 8-12 هاشتاج مناسب للموضوع`;
+
     } else {
-        prompt += `**CRITICAL INSTRUCTIONS: Create 100% ORIGINAL and CREATIVE content. Do NOT copy or follow ready-made templates. Each script must be unique and innovative.**\n\n`;
+        prompt += `**CRITICAL INSTRUCTION: Create 100% original and creative content that perfectly matches the selected theme. Do not copy or follow ready templates.**\n\n`;
         prompt += `Topic: ${topic}\n`;
-        
-        if (themeText) {
-            prompt += `Required style (as guidance only - do not copy): ${themeText}\n`;
-        }
+        prompt += `Theme: ${selectedTheme === 'custom' ? customTheme : getThemeDescription(selectedTheme)}\n`;
         
         if (audienceText) {
-            prompt += `Target audience: ${audienceText}\n`;
+            prompt += `Target Audience: ${audienceText}\n`;
         }
         
         if (additionalInfo) {
-            prompt += `Additional information: ${additionalInfo}\n`;
+            prompt += `Additional Information: ${additionalInfo}\n`;
         }
         
-        prompt += '\n**REQUIRED: Write an original and creative script for this topic. Do not use any ready-made templates. Be creative with the hook, analogy, and facts. Every sentence must be unique and innovative. Use your personal creativity and write as if you are sharing something exciting you just discovered with a close friend.**';
+        prompt += `\n**REQUIREMENT**: Write a social media post text in English that perfectly matches the selected theme "${selectedTheme === 'custom' ? customTheme : getThemeDescription(selectedTheme)}" and appeals to "${audienceText}". 
+
+**CRITICAL**: 
+- The text must be ready to copy and post directly
+- No # symbols in the main content, explanations, or additional comments
+- Start directly with the main content
+- At the end add two empty lines then add 8-12 relevant hashtags for the topic`;
     }
     
     return prompt;
@@ -1069,7 +1189,7 @@ function getAudienceDescription(audience) {
 }
 
 // Call AI API with retry mechanism (using Vercel API)
-async function callAIAPI(prompt, maxRetries = 3) {
+async function callAIAPI(prompt, maxRetries = 1) {
     const selectedModel = elements.modelSelect.value;
     const selectedApiKey = elements.apiKeySelect.value;
     const modelConfig = CONFIG.MODELS[selectedModel];
@@ -1083,8 +1203,31 @@ async function callAIAPI(prompt, maxRetries = 3) {
         throw new Error('مفتاح API غير صحيح');
     }
     
+    // Determine API endpoint (for local vs production)
+    const apiEndpoint = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+        ? '/api/generate' 
+        : '/api/generate';
+    
     try {
-        const response = await fetch('/api/generate', {
+        // First, test if API endpoint is available
+        const testResponse = await fetch(apiEndpoint, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        
+        if (!testResponse.ok && testResponse.status === 404) {
+            // API endpoint not available, use direct Gemini API as fallback
+            const actualApiKey = CONFIG.API_KEYS[selectedApiKey].key;
+            return await callGeminiAPIDirectly(prompt, modelConfig, actualApiKey, maxRetries);
+        }
+        
+        // Add timeout to prevent hanging requests
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 seconds timeout
+        
+        const response = await fetch(apiEndpoint, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -1094,13 +1237,28 @@ async function callAIAPI(prompt, maxRetries = 3) {
                 selectedModel: selectedModel,
                 selectedApiKey: selectedApiKey,
                 maxRetries: maxRetries
-            })
+            }),
+            signal: controller.signal
         });
         
-        const data = await response.json();
+        clearTimeout(timeoutId);
         
+        // Check if response is ok before trying to parse JSON
         if (!response.ok) {
-            if (response.status === 429 && data.suggestion) {
+            let errorData;
+            try {
+                const responseText = await response.text();
+                if (responseText && responseText.trim() !== '') {
+                    errorData = JSON.parse(responseText);
+                } else {
+                    errorData = { error: 'Empty response from server' };
+                }
+            } catch (parseError) {
+                console.error('Failed to parse error response:', parseError);
+                errorData = { error: `Server error: ${response.status}` };
+            }
+            
+            if (response.status === 429 && errorData.suggestion) {
                 const currentModel = modelConfig.name;
                 const suggestedModel = getSuggestedAlternativeModel(selectedModel);
                 const suggestionText = currentLanguage === 'ar' ? 
@@ -1109,18 +1267,152 @@ async function callAIAPI(prompt, maxRetries = 3) {
                 throw new Error(suggestionText);
             }
             
-            throw new Error(data.error || 'خطأ في الخدمة');
+            throw new Error(errorData.error || `خطأ في الخدمة: ${response.status}`);
+        }
+        
+        // Parse successful response
+        let data;
+        try {
+            const responseText = await response.text();
+            if (!responseText || responseText.trim() === '') {
+                throw new Error('Empty response from server');
+            }
+            data = JSON.parse(responseText);
+        } catch (parseError) {
+            console.error('JSON Parse Error:', parseError);
+            throw new Error(currentLanguage === 'ar' ? 
+                'خطأ في تحليل استجابة الخادم' : 
+                'Failed to parse server response');
+        }
+        
+        // Validate response data
+        if (!data || !data.content) {
+            throw new Error(currentLanguage === 'ar' ? 
+                'لم يتم تلقي محتوى من الخادم' : 
+                'No content received from server');
         }
         
         return data.content;
         
     } catch (error) {
-        if (error.message.includes('fetch')) {
+        console.error('API Call Error:', error);
+        
+        if (error.name === 'AbortError') {
             throw new Error(currentLanguage === 'ar' ? 
-                'خطأ في الاتصال بالخدمة' : 
-                'Connection error to service');
+                'انتهت مهلة الطلب. جرب مرة أخرى.' : 
+                'Request timeout. Please try again.');
         }
+        
+        if (error.message.includes('fetch') || error.message.includes('network')) {
+            throw new Error(currentLanguage === 'ar' ? 
+                'خطأ في الاتصال بالخدمة. تحقق من الإنترنت.' : 
+                'Connection error. Please check your internet connection.');
+        }
+        
+        // If API endpoint fails, try direct Gemini API as fallback
+        if (error.message.includes('405') || error.message.includes('Method Not Allowed') || error.message.includes('404')) {
+            console.log('API endpoint not available, using direct Gemini API fallback');
+            const actualApiKey = CONFIG.API_KEYS[selectedApiKey].key;
+            return await callGeminiAPIDirectly(prompt, modelConfig, actualApiKey, maxRetries);
+        }
+        
         throw error;
+    }
+}
+
+// Fallback function for direct Gemini API calls when Vercel API is not available
+async function callGeminiAPIDirectly(prompt, modelConfig, apiKey, maxRetries = 1) {
+    const requestBody = {
+        contents: [{
+            parts: [{
+                text: prompt
+            }]
+        }],
+        generationConfig: {
+            temperature: modelConfig.temperature,
+            topK: 40,
+            topP: 0.95,
+            maxOutputTokens: modelConfig.maxTokens,
+            stopSequences: [],
+            candidateCount: 1
+        }
+    };
+    
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+            const response = await fetch(`${modelConfig.endpoint}?key=${apiKey}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestBody)
+            });
+            
+            if (response.status === 503 || response.status === 429) {
+                // Don't retry for rate limiting - immediately fail to save quota
+                throw new Error(`Status ${response.status}: Rate limit or service unavailable`);
+            }
+            
+            if (!response.ok) {
+                let errorText;
+                try {
+                    errorText = await response.text();
+                } catch (e) {
+                    errorText = 'Unknown error occurred';
+                }
+                
+                if (response.status === 429) {
+                    const suggestionText = currentLanguage === 'ar' ? 
+                        `تم تجاوز حد الطلبات في ${modelConfig.name}. غير المفتاح أو انتظر قليلاً.` :
+                        `Rate limit exceeded for ${modelConfig.name}. Change API key or wait.`;
+                    throw new Error(suggestionText);
+                }
+                
+                throw new Error(`Gemini API request failed: ${response.status} - ${errorText}`);
+            }
+            
+            let data;
+            try {
+                const responseText = await response.text();
+                if (!responseText || responseText.trim() === '') {
+                    throw new Error('Empty response from Gemini API');
+                }
+                data = JSON.parse(responseText);
+            } catch (parseError) {
+                console.error('JSON Parse Error:', parseError);
+                throw new Error('Invalid JSON response from Gemini API');
+            }
+            
+            if (!data || !data.candidates || !data.candidates[0] || !data.candidates[0].content || !data.candidates[0].content.parts || !data.candidates[0].content.parts[0]) {
+                console.error('Invalid response structure:', data);
+                throw new Error('Invalid Gemini API response structure');
+            }
+            
+            const generatedText = data.candidates[0].content.parts[0].text;
+            if (!generatedText || generatedText.trim() === '') {
+                throw new Error('Empty content generated by Gemini API');
+            }
+            
+            return generatedText;
+            
+        } catch (error) {
+            if (attempt === maxRetries) {
+                if (error.message.includes('503')) {
+                    throw new Error(`خدمة ${modelConfig.name} غير متاحة حالياً. جرب نموذج آخر.`);
+                } else if (error.message.includes('429')) {
+                    throw new Error(error.message);
+                } else if (error.message.includes('403')) {
+                    throw new Error('مشكلة في مفتاح الـ API. تحقق من الإعدادات.');
+                } else {
+                    throw new Error(`خطأ في ${modelConfig.name}: ${error.message}`);
+                }
+            }
+            
+            if (attempt < maxRetries) {
+                const waitTime = 2000 * attempt;
+                await new Promise(resolve => setTimeout(resolve, waitTime));
+            }
+        }
     }
 }
 
@@ -1139,8 +1431,11 @@ function getSuggestedAlternativeModel(currentModel) {
 
 // Display generated script
 function displayScript(scriptText) {
+    // Clean the script text before displaying
+    const cleanedText = cleanScriptText(scriptText);
+    
     elements.outputContent.innerHTML = `
-        <div class="output-text fade-in">${formatScript(scriptText)}</div>
+        <div class="output-text fade-in">${formatScript(cleanedText)}</div>
     `;
     updateUI();
     
@@ -1148,16 +1443,67 @@ function displayScript(scriptText) {
     elements.outputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// Format script text
+// Clean script text to make it ready for posting
+function cleanScriptText(text) {
+    let cleaned = text;
+    
+    // Remove any explanatory sections that start with common phrases
+    const explanationPhrases = [
+        'هذا المنشور',
+        'هذا النص',
+        'المنشور السابق',
+        'النص السابق',
+        'الأسكربت',
+        'السكريبت',
+        'This post',
+        'This text',
+        'The script',
+        'Script explanation',
+        'Here\'s the',
+        'Here is the'
+    ];
+    
+    explanationPhrases.forEach(phrase => {
+        const regex = new RegExp(`^.*${phrase}.*$`, 'gmi');
+        cleaned = cleaned.replace(regex, '');
+    });
+    
+    // Remove section headers with symbols (but keep hashtags at the end)
+    const sectionHeaders = [
+        /^#+\s*(?!#\w)/gm,   // Markdown headers (but not hashtags)
+        /^\*+\s*.*/gm,       // Asterisk headers
+        /^-+\s*.*/gm,        // Dash headers
+        /^=+\s*.*/gm,        // Equal headers
+        /^\d+\.\s*عنوان/gmi, // Arabic numbered headers
+        /^\d+\.\s*title/gmi, // English numbered headers
+    ];
+    
+    sectionHeaders.forEach(regex => {
+        cleaned = cleaned.replace(regex, '');
+    });
+    
+    // Remove common social media formatting artifacts
+    cleaned = cleaned.replace(/^\s*---+\s*$/gm, ''); // Remove separator lines
+    cleaned = cleaned.replace(/^\s*\*\*\*+\s*$/gm, ''); // Remove asterisk separators
+    cleaned = cleaned.replace(/^\s*===+\s*$/gm, ''); // Remove equal separators
+    
+    // Clean up multiple line breaks (but preserve spacing before hashtags)
+    cleaned = cleaned.replace(/\n\s*\n\s*\n(?!\s*#)/g, '\n\n'); // Max 2 line breaks except before hashtags
+    cleaned = cleaned.replace(/^\s+|\s+$/g, ''); // Trim start and end
+    
+    return cleaned;
+}
+
+// Format script text for display (keep it simple and clean)
 function formatScript(text) {
     // Convert line breaks to HTML
     let formatted = text.replace(/\n/g, '<br>');
     
-    // Style emojis
+    // Style emojis to make them more visible
     formatted = formatted.replace(/([\u{1F300}-\u{1F9FF}])/gu, '<span class="emoji">$1</span>');
     
-    // Style headers (lines that end with :)
-    formatted = formatted.replace(/^(.+:)(<br>|$)/gm, '<strong>$1</strong>$2');
+    // Style hashtags to make them more prominent
+    formatted = formatted.replace(/(#[\w\u0600-\u06FF_]+)/g, '<span style="color: #3b82f6; font-weight: 500;">$1</span>');
     
     return formatted;
 }
