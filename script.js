@@ -82,7 +82,7 @@ const CONFIG = {
 
 // System Messages
 const SYSTEM_MESSAGES = {
-    base: `You are an AI assistant specialized in creating highly engaging and viral social media content scripts. Your primary task is to write content tailored to the specific theme and tone requested, ensuring every part of the script serves the purpose of creating engaging, authentic content.
+    base: `You are an AI assistant specialized in creating highly engaging and viral social media content scripts. Your primary task is to write content tailored to the specific theme and tone requested, ensuring every part of the script serves the purpose of creating engaging, authentic content in Egyption semi-formal Langauge.
 
 **CRITICAL INSTRUCTION: You must create ORIGINAL and UNIQUE content. Do NOT copy or follow templates. Each script must be fresh, creative, and innovative.**`,
 
@@ -198,7 +198,25 @@ Your goal is to tell compelling stories that connect emotionally with the audien
 2. **Character**: Introduce relatable characters
 3. **Conflict**: Present the challenge or problem
 4. **Resolution**: Show how it was overcome
-5. **Lesson**: Extract the meaningful takeaway`
+5. **Lesson**: Extract the meaningful takeaway`,
+
+    egyptian: `أنت مساعد ذكي متخصص في كتابة محتوى عفوي باللهجة المصرية لوسائل التواصل الاجتماعي.
+
+**النمط: مصري عفوي وودود**
+هدفك هو التواصل بطريقة طبيعية ودودة مع الجمهور المصري.
+
+**إرشادات النبرة:**
+- استخدم اللهجة المصرية العفوية والطبيعية
+- كن ودود ومقرب من الناس
+- استخدم تعبيرات مصرية: "يا جماعة"، "صدقوني"، "والله العظيم"، "بجد"، "ده اللي حصل"
+- إيموجي مصرية ومرحة: 😂😍🤩🔥💪🏻✨👏🏻
+- اجعل الكلام بسيط ومفهوم لكل الناس
+
+**هيكل المحتوى المصري:**
+1. **البداية الودودة**: ابدأ بطريقة مألوفة "يا جماعة" أو "هقولكم على حاجة"
+2. **الموضوع**: اطرح الفكرة بشكل بسيط وواضح
+3. **التفاعل**: اطلب رأي الناس أو خبرتهم
+4. **الخاتمة**: ادع للتفاعل "قولولي إيه رأيكم" أو "شاركوا الفيديو"`
 };
 
 // Translations
@@ -271,6 +289,7 @@ const TRANSLATIONS = {
         themeSerious: 'جدي ومهني',
         themeInspirational: 'ملهم ومحفز',
         themeStorytelling: 'قصصي وشخصي',
+        themeEgyptian: 'مصري عفوي 🇪🇬',
         themeCustom: 'مخصص',
         audienceGeneral: 'الجمهور العام',
         audienceYoung: 'الشباب (18-30)',
@@ -352,6 +371,7 @@ const TRANSLATIONS = {
         themeSerious: 'Serious & Professional',
         themeInspirational: 'Inspirational & Motivating',
         themeStorytelling: 'Storytelling & Personal',
+        themeEgyptian: 'Egyptian Casual 🇪🇬',
         themeCustom: 'Custom',
         audienceGeneral: 'General Audience',
         audienceYoung: 'Young Adults (18-30)',
@@ -617,6 +637,7 @@ function updateLanguage(lang) {
     document.getElementById('themeSerious').textContent = t.themeSerious;
     document.getElementById('themeInspirational').textContent = t.themeInspirational;
     document.getElementById('themeStorytelling').textContent = t.themeStorytelling;
+    document.getElementById('themeEgyptian').textContent = t.themeEgyptian;
     document.getElementById('themeCustom').textContent = t.themeCustom;
     
     document.getElementById('audienceGeneral').textContent = t.audienceGeneral;
@@ -1117,6 +1138,16 @@ function buildPrompt(topic, additionalInfo) {
         prompt += `الموضوع المطلوب: ${topic}\n`;
         prompt += `النمط المطلوب: ${selectedTheme === 'custom' ? customTheme : getThemeDescription(selectedTheme)}\n`;
         
+        // Special instructions for Egyptian theme
+        if (selectedTheme === 'egyptian') {
+            prompt += `\n**تعليمات خاصة للنمط المصري:**\n`;
+            prompt += `- استخدم اللهجة المصرية العفوية والطبيعية\n`;
+            prompt += `- اكتب كأنك بتتكلم مع صحابك أو جيرانك\n`;
+            prompt += `- استخدم كلمات مصرية مثل: "يا جماعة"، "بجد"، "والله"، "ده اللي حصل"، "صدقوني"\n`;
+            prompt += `- اجعل الكلام بسيط ومفهوم للمصريين\n`;
+            prompt += `- استخدم أمثلة من الواقع المصري\n\n`;
+        }
+        
         if (audienceText) {
             prompt += `الجمهور المستهدف: ${audienceText}\n`;
         }
@@ -1125,15 +1156,39 @@ function buildPrompt(topic, additionalInfo) {
             prompt += `معلومات إضافية: ${additionalInfo}\n`;
         }
         
-        prompt += `\n**المطلوب**: اكتب نص منشور لوسائل التواصل الاجتماعي باللغة العربية يتماشى تماماً مع النمط المختار "${selectedTheme === 'custom' ? customTheme : getThemeDescription(selectedTheme)}" ويجذب انتباه "${audienceText}". 
+        prompt += `\n**المطلوب**: اكتب منشور كامل لوسائل التواصل الاجتماعي باللغة العربية يتماشى تماماً مع النمط المختار "${selectedTheme === 'custom' ? customTheme : getThemeDescription(selectedTheme)}" ويجذب انتباه "${audienceText}". 
 
-**مهم جداً**: 
-- النص يجب أن يكون جاهز للنسخ والنشر مباشرة
-- بدون علامات # في المحتوى الأساسي أو شروحات أو تفسيرات إضافية
-- ابدأ مباشرة بالمحتوى الأساسي
-- في النهاية ضع سطرين فارغين ثم أضف 8-12 هاشتاج مناسب للموضوع`;
+**التنسيق المطلوب بالضبط**:
+1. ابدأ بالمحتوى الأساسي (نص المنشور الفعلي) - يجب أن يكون 3-5 جمل على الأقل
+2. سطر فارغ
+3. سطر فارغ  
+4. ثم الهاشتاجات (8-12 هاشتاج)
 
-    } else {
+        **مثال على التنسيق**:
+        هل تعلم أن ريادة الأعمال تحتاج إلى شجاعة أكثر من المال؟ 🤔
+
+        كثير من الناس يعتقدون أن البداية تحتاج رأس مال ضخم، لكن الحقيقة أن أهم شيء هو الفكرة والإصرار على تنفيذها.
+
+        ابدأ صغيراً، فكر كبيراً، ولا تخف من الفشل - فهو جزء من رحلة النجاح! 💪
+
+
+        #ريادة_الأعمال #نجاح #تحفيز #ابدأ_الآن
+
+        ${selectedTheme === 'egyptian' ? `
+        **مثال للنمط المصري**:
+        يا جماعة، عاوز أقولكم على حاجة مهمة جداً! 😊
+
+        صدقوني، ريادة الأعمال مش محتاجة فلوس كتير زي ما الناس فاكرة. الموضوع كله في الفكرة والعزيمة. أنا شوفت ناس بدأت بـ 100 جنيه وبقوا أصحاب شركات!
+
+        ابدأ من بيتك، جرب فكرتك، ومتخافش من الغلط - ده جزء من التعلم! 💪🏻
+
+
+        #ريادة_الأعمال #مشروع_صغير #ابدأ_من_بيتك #نجاح_مصري` : ''}
+
+        **مهم جداً**: 
+        - لا تبدأ بالهاشتاجات أو الإيموجي فقط
+        - ابدأ بالمحتوى النصي الفعلي للمنشور
+        - اكتب نص مفيد ومثير للاهتمام حول الموضوع`;    } else {
         prompt += `**CRITICAL INSTRUCTION: Create 100% original and creative content that perfectly matches the selected theme. Do not copy or follow ready templates.**\n\n`;
         prompt += `Topic: ${topic}\n`;
         prompt += `Theme: ${selectedTheme === 'custom' ? customTheme : getThemeDescription(selectedTheme)}\n`;
@@ -1146,13 +1201,28 @@ function buildPrompt(topic, additionalInfo) {
             prompt += `Additional Information: ${additionalInfo}\n`;
         }
         
-        prompt += `\n**REQUIREMENT**: Write a social media post text in English that perfectly matches the selected theme "${selectedTheme === 'custom' ? customTheme : getThemeDescription(selectedTheme)}" and appeals to "${audienceText}". 
+        prompt += `\n**REQUIREMENT**: Write a complete social media post in English that perfectly matches the selected theme "${selectedTheme === 'custom' ? customTheme : getThemeDescription(selectedTheme)}" and appeals to "${audienceText}". 
+
+**Exact Format Required**:
+1. Start with the main content (actual post text) - must be at least 3-5 sentences
+2. Empty line
+3. Empty line
+4. Then hashtags (8-12 hashtags)
+
+**Format Example**:
+Did you know that entrepreneurship requires more courage than money? 🤔
+
+Many people think you need huge capital to start, but the truth is that the most important thing is the idea and persistence to execute it.
+
+Start small, think big, and don't fear failure - it's part of the success journey! 💪
+
+
+#Entrepreneurship #Success #Motivation #StartNow
 
 **CRITICAL**: 
-- The text must be ready to copy and post directly
-- No # symbols in the main content, explanations, or additional comments
-- Start directly with the main content
-- At the end add two empty lines then add 8-12 relevant hashtags for the topic`;
+- Do NOT start with hashtags or emojis only
+- Start with actual meaningful text content about the topic
+- Write useful and engaging text about the subject`;
     }
     
     return prompt;
@@ -1166,7 +1236,8 @@ function getThemeDescription(theme) {
         'humorous': currentLanguage === 'ar' ? 'فكاهي وخفيف مع لمسة ترفيهية' : 'humorous and light with entertainment elements',
         'serious': currentLanguage === 'ar' ? 'جدي ومهني مع تركيز على المصداقية' : 'serious and professional focusing on credibility',
         'inspirational': currentLanguage === 'ar' ? 'ملهم ومحفز يدفع للعمل والتطوير' : 'inspirational and motivating driving action and development',
-        'storytelling': currentLanguage === 'ar' ? 'قصصي وشخصي مع أمثلة من الواقع' : 'storytelling and personal with real-life examples'
+        'storytelling': currentLanguage === 'ar' ? 'قصصي وشخصي مع أمثلة من الواقع' : 'storytelling and personal with real-life examples',
+        'egyptian': currentLanguage === 'ar' ? 'عفوي ودود باللهجة المصرية الطبيعية' : 'casual and friendly with Egyptian dialect'
     };
     
     return themeDescriptions[theme] || '';
